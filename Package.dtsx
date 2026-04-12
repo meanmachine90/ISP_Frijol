@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="19"
-  DTS:VersionGUID="{90FBA864-7887-43CC-95C9-246EECA17035}">
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{EEA9458F-D9B5-492D-AA57-C38C9D7E349F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -4287,38 +4287,35 @@ INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.DEPARTAMENTOS d ON m.ID_DEP
                   description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
-    v.ID_CLIENTE AS CodigoCliente,
-    v.ID_EMPLEADO AS CodigoEmpleado,
-    vd.ID_PRODUCTO AS CodigoProducto,
-    (SELECT TOP 1 co.ID_PROVEEDOR
-     FROM DbMultidimensionales_Proyecto3_Frijol.dbo.COMPRAS_DETALLE cd2
-     INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.COMPRAS co ON cd2.ID_COMPRA = co.ID_COMPRA
-     WHERE cd2.ID_PRODUCTO = vd.ID_PRODUCTO ORDER BY co.FECHA_COMPRA DESC) AS CodigoProveedor,
-    YEAR(v.FECHA_VENTA) * 100 + MONTH(v.FECHA_VENTA) AS CodigoTiempo,
-    (SELECT TOP 1 pr.ID_SOCIO
-     FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCCION pr
-     WHERE pr.ID_PRODUCTO = vd.ID_PRODUCTO ORDER BY pr.FECHA_COSECHA DESC) AS CodigoSocio,
-    (SELECT TOP 1 pr.ID_CICLO
-     FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCCION pr
-     WHERE pr.ID_PRODUCTO = vd.ID_PRODUCTO ORDER BY pr.FECHA_COSECHA DESC) AS CodigoCiclo,
-    -1 AS CodigoConcepto,
-    -1 AS CodigoInstitucion,
-    cl.ID_MUNICIPIO AS CodigoUbicacion,
-    p.ID_CATEGORIA AS CodigoCategoria,
-    fp.CodigoFormaPago AS CodigoFormaPago,
-    vd.CANTIDAD AS Cantidad,
-    vd.PRECIO_UNITARIO AS PrecioUnitario,
-    vd.DESCUENTO AS Descuento,
-    (vd.CANTIDAD * vd.PRECIO_UNITARIO) - vd.DESCUENTO AS Subtotal,
-    vd.CANTIDAD * hp.PRECIO_COMPRA AS CostoTotal,
-    ((vd.CANTIDAD * vd.PRECIO_UNITARIO) - vd.DESCUENTO) - (vd.CANTIDAD * hp.PRECIO_COMPRA) AS Margen
-FROM DbMultidimensionales_Proyecto3_Frijol.dbo.VENTAS v
-INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.VENTAS_DETALLE vd ON v.ID_VENTA = vd.ID_VENTA
-INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.CLIENTES cl ON v.ID_CLIENTE = cl.ID_CLIENTE
-INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCTOS p ON vd.ID_PRODUCTO = p.ID_PRODUCTO
-INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.HISTORIAL_PRECIOS hp ON vd.ID_HISTORIAL_PRECIO = hp.ID_HISTORIAL
-INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        v.ID_CLIENTE AS CodigoCliente, v.ID_EMPLEADO AS CodigoEmpleado, vd.ID_PRODUCTO AS CodigoProducto, ISNULL
+                             ((SELECT        TOP (1) co.ID_PROVEEDOR
+                                 FROM            DbMultidimensionales_Proyecto3_Frijol.dbo.COMPRAS_DETALLE AS cd2 INNER JOIN
+                                                          DbMultidimensionales_Proyecto3_Frijol.dbo.COMPRAS AS co ON cd2.ID_COMPRA = co.ID_COMPRA
+                                 WHERE        (cd2.ID_PRODUCTO = vd.ID_PRODUCTO)
+                                 ORDER BY co.FECHA_COMPRA DESC), 1) AS CodigoProveedor, YEAR(v.FECHA_VENTA) * 100 + MONTH(v.FECHA_VENTA) AS CodigoTiempo, ISNULL
+                             ((SELECT        TOP (1) ID_SOCIO
+                                 FROM            DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCCION AS pr
+                                 WHERE        (ID_PRODUCTO = vd.ID_PRODUCTO)
+                                 ORDER BY FECHA_COSECHA DESC), 1) AS CodigoSocio, ISNULL
+                             ((SELECT        TOP (1) ID_CICLO
+                                 FROM            DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCCION AS pr
+                                 WHERE        (ID_PRODUCTO = vd.ID_PRODUCTO)
+                                 ORDER BY FECHA_COSECHA DESC), 1) AS CodigoCiclo, ISNULL(e.ID_INSTITUCION_FINANCIERA, 1) AS CodigoInstitucion, ISNULL
+                             ((SELECT        TOP (1) pd.ID_CONCEPTO
+                                 FROM            DbMultidimensionales_Proyecto3_Frijol.dbo.PLANILLA AS pl INNER JOIN
+                                                          DbMultidimensionales_Proyecto3_Frijol.dbo.PLANILLA_DETALLE AS pd ON pl.ID_PLANILLA = pd.ID_PLANILLA
+                                 WHERE        (pl.ID_EMPLEADO = v.ID_EMPLEADO)
+                                 ORDER BY pl.FECHA_PAGO DESC), 1) AS CodigoConcepto, cl.ID_MUNICIPIO AS CodigoUbicacion, p.ID_CATEGORIA AS CodigoCategoria, fp.CodigoFormaPago, vd.CANTIDAD AS Cantidad, 
+                         vd.PRECIO_UNITARIO AS PrecioUnitario, vd.DESCUENTO AS Descuento, vd.CANTIDAD * vd.PRECIO_UNITARIO - vd.DESCUENTO AS Subtotal, vd.CANTIDAD * hp.PRECIO_COMPRA AS CostoTotal, 
+                         (vd.CANTIDAD * vd.PRECIO_UNITARIO - vd.DESCUENTO) - vd.CANTIDAD * hp.PRECIO_COMPRA AS Margen
+FROM            DbMultidimensionales_Proyecto3_Frijol.dbo.VENTAS AS v INNER JOIN
+                         DbMultidimensionales_Proyecto3_Frijol.dbo.VENTAS_DETALLE AS vd ON v.ID_VENTA = vd.ID_VENTA INNER JOIN
+                         DbMultidimensionales_Proyecto3_Frijol.dbo.CLIENTES AS cl ON v.ID_CLIENTE = cl.ID_CLIENTE INNER JOIN
+                         DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCTOS AS p ON vd.ID_PRODUCTO = p.ID_PRODUCTO INNER JOIN
+                         DbMultidimensionales_Proyecto3_Frijol.dbo.HISTORIAL_PRECIOS AS hp ON vd.ID_HISTORIAL_PRECIO = hp.ID_HISTORIAL INNER JOIN
+                         DbMultidimensionales_Proyecto3_Frijol.dbo.EMPLEADOS AS e ON v.ID_EMPLEADO = e.ID_EMPLEADO INNER JOIN
+                         Dw_FormaPago AS fp ON fp.NombreFormaPago = v.FORMA_PAGO
+ORDER BY CodigoEmpleado</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -4419,15 +4416,6 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
                       name="CodigoCiclo"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoConcepto]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoConcepto]"
-                      lineageId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoConcepto]"
-                      name="CodigoConcepto"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoInstitucion]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversión"
@@ -4435,6 +4423,15 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
                       externalMetadataColumnId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoInstitucion]"
                       lineageId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoInstitucion]"
                       name="CodigoInstitucion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoConcepto]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoConcepto]"
+                      lineageId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoConcepto]"
+                      name="CodigoConcepto"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoUbicacion]"
@@ -4561,13 +4558,13 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
                       dataType="i4"
                       name="CodigoCiclo" />
                     <externalMetadataColumn
-                      refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoConcepto]"
-                      dataType="i4"
-                      name="CodigoConcepto" />
-                    <externalMetadataColumn
                       refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoInstitucion]"
                       dataType="i4"
                       name="CodigoInstitucion" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoConcepto]"
+                      dataType="i4"
+                      name="CodigoConcepto" />
                     <externalMetadataColumn
                       refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoUbicacion]"
                       dataType="i4"
@@ -4659,15 +4656,15 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
                       lineageId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCiclo]"
                       name="CodigoCiclo" />
                     <outputColumn
-                      refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoConcepto]"
-                      dataType="i4"
-                      lineageId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoConcepto]"
-                      name="CodigoConcepto" />
-                    <outputColumn
                       refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoInstitucion]"
                       dataType="i4"
                       lineageId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoInstitucion]"
                       name="CodigoInstitucion" />
+                    <outputColumn
+                      refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoConcepto]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoConcepto]"
+                      name="CodigoConcepto" />
                     <outputColumn
                       refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoUbicacion]"
                       dataType="i4"
@@ -5274,7 +5271,7 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
     design-time-name="Package\Dw_Categorias">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="172,42"
           Id="Package\Dw_Categorias\Origen de ADO NET"
@@ -5314,7 +5311,9 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5340,15 +5339,15 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
     design-time-name="Package\Dw_Ciclos">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="172,42"
-          Id="Package\Dw_Ciclos\Origen de ADO NET"
-          TopLeft="5.5,5.5" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="176,42"
           Id="Package\Dw_Ciclos\Destino de ADO NET"
           TopLeft="302.5,28.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Dw_Ciclos\Origen de ADO NET"
+          TopLeft="5.5,5.5" />
         <EdgeLayout
           Id="Package\Dw_Ciclos.Paths[Salida de origen de ADO NET]"
           TopLeft="177.5,26.5">
@@ -5380,7 +5379,9 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5406,15 +5407,15 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
     design-time-name="Package\Dw_Clientes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="172,42"
-          Id="Package\Dw_Clientes\Origen de ADO NET"
-          TopLeft="724,181" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="176,42"
           Id="Package\Dw_Clientes\Destino de ADO NET"
           TopLeft="1085.5,208.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Dw_Clientes\Origen de ADO NET"
+          TopLeft="724,181" />
         <EdgeLayout
           Id="Package\Dw_Clientes.Paths[Salida de origen de ADO NET]"
           TopLeft="896,202">
@@ -5446,7 +5447,9 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5474,13 +5477,13 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="172,42"
-          Id="Package\Dw_Conceptos_Pagos\Origen de ADO NET"
-          TopLeft="5.5,5.5" />
-        <NodeLayout
           Size="176,42"
           Id="Package\Dw_Conceptos_Pagos\Destino de ADO NET"
           TopLeft="290.5,9.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Dw_Conceptos_Pagos\Origen de ADO NET"
+          TopLeft="5.5,5.5" />
         <EdgeLayout
           Id="Package\Dw_Conceptos_Pagos.Paths[Salida de origen de ADO NET]"
           TopLeft="177.5,28.5">
@@ -5526,15 +5529,15 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
     design-time-name="Package\Dw_Empleados">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="172,42"
-          Id="Package\Dw_Empleados\Origen de ADO NET"
-          TopLeft="5.5,5.5" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="176,42"
           Id="Package\Dw_Empleados\Destino de ADO NET"
           TopLeft="690.5,80.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Dw_Empleados\Origen de ADO NET"
+          TopLeft="5.5,5.5" />
         <EdgeLayout
           Id="Package\Dw_Empleados.Paths[Salida de origen de ADO NET]"
           TopLeft="91.5,47.5">
@@ -5566,7 +5569,9 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5592,7 +5597,7 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
     design-time-name="Package\Dw_Formas_Pago">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="172,42"
           Id="Package\Dw_Formas_Pago\Origen de ADO NET"
@@ -5632,7 +5637,9 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5658,7 +5665,7 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
     design-time-name="Package\Dw_Instituciones">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="172,42"
           Id="Package\Dw_Instituciones\Origen de ADO NET"
@@ -5698,7 +5705,9 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5724,7 +5733,7 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
     design-time-name="Package\Dw_Productos">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="172,42"
           Id="Package\Dw_Productos\Origen de ADO NET"
@@ -5764,7 +5773,9 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5790,7 +5801,7 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
     design-time-name="Package\Dw_Proveedores">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="172,42"
           Id="Package\Dw_Proveedores\Origen de ADO NET"
@@ -5830,7 +5841,9 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5856,7 +5869,7 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
     design-time-name="Package\Dw_Socios">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="172,42"
           Id="Package\Dw_Socios\Origen de ADO NET"
@@ -5896,7 +5909,9 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5922,7 +5937,7 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
     design-time-name="Package\Dw_Tiempo">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="172,42"
           Id="Package\Dw_Tiempo\Origen de ADO NET"
@@ -5962,7 +5977,9 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5988,15 +6005,15 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
     design-time-name="Package\Dw_Ubicaciones">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="172,42"
-          Id="Package\Dw_Ubicaciones\Origen de ADO NET"
-          TopLeft="5.5,8.5" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="176,42"
           Id="Package\Dw_Ubicaciones\Destino de ADO NET"
           TopLeft="314.5,11.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Dw_Ubicaciones\Origen de ADO NET"
+          TopLeft="5.5,8.5" />
         <EdgeLayout
           Id="Package\Dw_Ubicaciones.Paths[Salida de origen de ADO NET]"
           TopLeft="177.5,31">
@@ -6016,7 +6033,9 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6044,13 +6063,13 @@ INNER JOIN Dw_FormaPago fp ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="172,42"
-          Id="Package\Hechos_Ventas\Origen de ADO NET"
-          TopLeft="5.5,5.5" />
-        <NodeLayout
           Size="176,42"
           Id="Package\Hechos_Ventas\Destino de ADO NET"
           TopLeft="489.5,36.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Hechos_Ventas\Origen de ADO NET"
+          TopLeft="5.5,5.5" />
         <EdgeLayout
           Id="Package\Hechos_Ventas.Paths[Salida de origen de ADO NET]"
           TopLeft="177.5,26.5">
