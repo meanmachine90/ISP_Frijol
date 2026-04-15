@@ -1,0 +1,637 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/14/2026 7:59:05 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-67DFFA9"
+  DTS:CreatorName="DESKTOP-67DFFA9\Alejandro"
+  DTS:DTSID="{452BD6B1-59D1-48DD-865E-B22A77367096}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{E0501BAD-FE6D-4C95-86F8-9A56DC7C202D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Hechos_Planilla"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0396D213-9697-48D3-8521-82ACF7C5AB7C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Hechos_Planilla"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Hechos_Planilla\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Hechos_Planilla"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hechos_Planilla\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{81BD7563-5E5D-4A11-AB81-406B9EF9E203}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Dw_Frijol]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoEmpleado]"
+                      cachedDataType="i4"
+                      cachedName="CodigoEmpleado"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoEmpleado]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoEmpleado]" />
+                    <inputColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoCargoEmpleado]"
+                      cachedDataType="i4"
+                      cachedName="CodigoCargoEmpleado"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoCargoEmpleado]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCargoEmpleado]" />
+                    <inputColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoInstitucion]"
+                      cachedDataType="i4"
+                      cachedName="CodigoInstitucion"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoInstitucion]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoInstitucion]" />
+                    <inputColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoConcepto]"
+                      cachedDataType="i4"
+                      cachedName="CodigoConcepto"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoConcepto]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoConcepto]" />
+                    <inputColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoTiempo]"
+                      cachedDataType="i4"
+                      cachedName="CodigoTiempo"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoTiempo]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoTiempo]" />
+                    <inputColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[SalarioBase]"
+                      cachedDataType="numeric"
+                      cachedName="SalarioBase"
+                      cachedPrecision="12"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[SalarioBase]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[SalarioBase]" />
+                    <inputColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[TotalIngresos]"
+                      cachedDataType="numeric"
+                      cachedName="TotalIngresos"
+                      cachedPrecision="12"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[TotalIngresos]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[TotalIngresos]" />
+                    <inputColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[TotalDeducciones]"
+                      cachedDataType="numeric"
+                      cachedName="TotalDeducciones"
+                      cachedPrecision="12"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[TotalDeducciones]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[TotalDeducciones]" />
+                    <inputColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[SalarioNeto]"
+                      cachedDataType="numeric"
+                      cachedName="SalarioNeto"
+                      cachedPrecision="14"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[SalarioNeto]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[SalarioNeto]" />
+                    <inputColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[MontoConcepto]"
+                      cachedDataType="numeric"
+                      cachedName="MontoConcepto"
+                      cachedPrecision="12"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[MontoConcepto]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[MontoConcepto]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Codigo]"
+                      dataType="i4"
+                      name="Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoEmpleado]"
+                      dataType="i4"
+                      name="CodigoEmpleado" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoCargoEmpleado]"
+                      dataType="i4"
+                      name="CodigoCargoEmpleado" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoInstitucion]"
+                      dataType="i4"
+                      name="CodigoInstitucion" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoConcepto]"
+                      dataType="i4"
+                      name="CodigoConcepto" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoTiempo]"
+                      dataType="i4"
+                      name="CodigoTiempo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[SalarioBase]"
+                      dataType="numeric"
+                      name="SalarioBase"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[TotalIngresos]"
+                      dataType="numeric"
+                      name="TotalIngresos"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[TotalDeducciones]"
+                      dataType="numeric"
+                      name="TotalDeducciones"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[SalarioNeto]"
+                      dataType="numeric"
+                      name="SalarioNeto"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[MontoConcepto]"
+                      dataType="numeric"
+                      name="MontoConcepto"
+                      precision="12"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Hechos_Planilla\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Planilla\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Planilla\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Hechos_Planilla\Origen de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    p.ID_EMPLEADO                                             AS CodigoEmpleado,
+    e.ID_CARGO_EMPLEADO                                       AS CodigoCargoEmpleado,
+    ISNULL(p.ID_INSTITUCION_FINANCIERA, e.ID_INSTITUCION_FINANCIERA) AS CodigoInstitucion,
+    pd.ID_CONCEPTO                                            AS CodigoConcepto,
+    YEAR(p.PERIODO_INICIO) * 100 + MONTH(p.PERIODO_INICIO)    AS CodigoTiempo,
+    p.SALARIO_BASE                                            AS SalarioBase,
+    p.TOTAL_INGRESOS                                          AS TotalIngresos,
+    p.TOTAL_DEDUCCIONES                                       AS TotalDeducciones,
+    (p.SALARIO_BASE + p.TOTAL_INGRESOS - p.TOTAL_DEDUCCIONES) AS SalarioNeto,
+    pd.MONTO                                                  AS MontoConcepto
+FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PLANILLA p
+INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.PLANILLA_DETALLE pd ON p.ID_PLANILLA = pd.ID_PLANILLA
+INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.EMPLEADOS e         ON p.ID_EMPLEADO = e.ID_EMPLEADO;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hechos_Planilla\Origen de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{81BD7563-5E5D-4A11-AB81-406B9EF9E203}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Dw_Frijol]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoEmpleado]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoEmpleado]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoEmpleado]"
+                      name="CodigoEmpleado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCargoEmpleado]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCargoEmpleado]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCargoEmpleado]"
+                      name="CodigoCargoEmpleado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoInstitucion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoInstitucion]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoInstitucion]"
+                      name="CodigoInstitucion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoConcepto]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoConcepto]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoConcepto]"
+                      name="CodigoConcepto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoTiempo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoTiempo]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoTiempo]"
+                      name="CodigoTiempo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[SalarioBase]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[SalarioBase]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[SalarioBase]"
+                      name="SalarioBase"
+                      precision="12"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[TotalIngresos]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[TotalIngresos]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[TotalIngresos]"
+                      name="TotalIngresos"
+                      precision="12"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[TotalDeducciones]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[TotalDeducciones]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[TotalDeducciones]"
+                      name="TotalDeducciones"
+                      precision="12"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[SalarioNeto]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[SalarioNeto]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[SalarioNeto]"
+                      name="SalarioNeto"
+                      precision="14"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[MontoConcepto]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[MontoConcepto]"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[MontoConcepto]"
+                      name="MontoConcepto"
+                      precision="12"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoEmpleado]"
+                      dataType="i4"
+                      name="CodigoEmpleado" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCargoEmpleado]"
+                      dataType="i4"
+                      name="CodigoCargoEmpleado" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoInstitucion]"
+                      dataType="i4"
+                      name="CodigoInstitucion" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoConcepto]"
+                      dataType="i4"
+                      name="CodigoConcepto" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoTiempo]"
+                      dataType="i4"
+                      name="CodigoTiempo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[SalarioBase]"
+                      dataType="numeric"
+                      name="SalarioBase"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[TotalIngresos]"
+                      dataType="numeric"
+                      name="TotalIngresos"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[TotalDeducciones]"
+                      dataType="numeric"
+                      name="TotalDeducciones"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[SalarioNeto]"
+                      dataType="numeric"
+                      name="SalarioNeto"
+                      precision="14"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[MontoConcepto]"
+                      dataType="numeric"
+                      name="MontoConcepto"
+                      precision="12"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoEmpleado]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoEmpleado]"
+                      name="CodigoEmpleado" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCargoEmpleado]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCargoEmpleado]"
+                      name="CodigoCargoEmpleado" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoInstitucion]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoInstitucion]"
+                      name="CodigoInstitucion" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoConcepto]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoConcepto]"
+                      name="CodigoConcepto" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoTiempo]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoTiempo]"
+                      name="CodigoTiempo" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[SalarioBase]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[SalarioBase]"
+                      name="SalarioBase"
+                      precision="12"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[TotalIngresos]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[TotalIngresos]"
+                      name="TotalIngresos"
+                      precision="12"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[TotalDeducciones]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[TotalDeducciones]"
+                      name="TotalDeducciones"
+                      precision="12"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[SalarioNeto]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[SalarioNeto]"
+                      name="SalarioNeto"
+                      precision="14"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[MontoConcepto]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[MontoConcepto]"
+                      name="MontoConcepto"
+                      precision="12"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Hechos_Planilla.Paths[Salida de origen de ADO NET]"
+              endId="Package\Hechos_Planilla\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Hechos_Planilla\Origen de ADO NET.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Hechos_Planilla"
+          TopLeft="305.5,90.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Hechos_Planilla">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Hechos_Planilla\Origen de ADO NET"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Hechos_Planilla\Destino de ADO NET"
+          TopLeft="364.5,16.5" />
+        <EdgeLayout
+          Id="Package\Hechos_Planilla.Paths[Salida de origen de ADO NET]"
+          TopLeft="177.5,26.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="187,11"
+              Start="0,0"
+              End="179.5,11">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="89.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="89.5,0"
+                    Point2="93.5,0"
+                    Point3="93.5,4" />
+                  <mssgle:LineSegment
+                    End="93.5,7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="93.5,7"
+                    Point2="93.5,11"
+                    Point3="97.5,11" />
+                  <mssgle:LineSegment
+                    End="179.5,11" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Hechos_Planilla\Origen de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Hechos_Planilla\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

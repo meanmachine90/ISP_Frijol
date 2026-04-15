@@ -1,0 +1,567 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/14/2026 7:59:31 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-67DFFA9"
+  DTS:CreatorName="DESKTOP-67DFFA9\Alejandro"
+  DTS:DTSID="{11FA3C2F-06C2-470D-BE0A-BA2B51EA2BCE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{173EF615-E38F-407B-830A-88083B845974}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Hechos_Inventario"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E535C744-7B0D-49D7-8244-9BC0C4B3472C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Hechos_Inventario"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Hechos_Inventario\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Hechos_Inventario"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hechos_Inventario\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{81BD7563-5E5D-4A11-AB81-406B9EF9E203}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Dw_Frijol]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoProducto]"
+                      cachedDataType="i4"
+                      cachedName="CodigoProducto"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoProducto]"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoProducto]" />
+                    <inputColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoCategoria]"
+                      cachedDataType="i4"
+                      cachedName="CodigoCategoria"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoCategoria]"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCategoria]" />
+                    <inputColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoUnidad]"
+                      cachedDataType="i4"
+                      cachedName="CodigoUnidad"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoUnidad]"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoUnidad]" />
+                    <inputColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoTiempo]"
+                      cachedDataType="i4"
+                      cachedName="CodigoTiempo"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoTiempo]"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoTiempo]" />
+                    <inputColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[StockActual]"
+                      cachedDataType="numeric"
+                      cachedName="StockActual"
+                      cachedPrecision="12"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[StockActual]"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[StockActual]" />
+                    <inputColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[StockMinimo]"
+                      cachedDataType="numeric"
+                      cachedName="StockMinimo"
+                      cachedPrecision="12"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[StockMinimo]"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[StockMinimo]" />
+                    <inputColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[ValorInventario]"
+                      cachedDataType="numeric"
+                      cachedName="ValorInventario"
+                      cachedPrecision="25"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[ValorInventario]"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ValorInventario]" />
+                    <inputColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[EstadoStock]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="EstadoStock"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[EstadoStock]"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[EstadoStock]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Codigo]"
+                      dataType="i4"
+                      name="Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoProducto]"
+                      dataType="i4"
+                      name="CodigoProducto" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoCategoria]"
+                      dataType="i4"
+                      name="CodigoCategoria" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoUnidad]"
+                      dataType="i4"
+                      name="CodigoUnidad" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoTiempo]"
+                      dataType="i4"
+                      name="CodigoTiempo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[StockActual]"
+                      dataType="numeric"
+                      name="StockActual"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[StockMinimo]"
+                      dataType="numeric"
+                      name="StockMinimo"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[ValorInventario]"
+                      dataType="numeric"
+                      name="ValorInventario"
+                      precision="14"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[EstadoStock]"
+                      dataType="wstr"
+                      length="20"
+                      name="EstadoStock" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Hechos_Inventario\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Inventario\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Inventario\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Hechos_Inventario\Origen de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    p.ID_PRODUCTO   AS CodigoProducto,
+    p.ID_CATEGORIA  AS CodigoCategoria,
+    p.ID_UNIDAD     AS CodigoUnidad,
+    YEAR(GETDATE()) * 100 + MONTH(GETDATE()) AS CodigoTiempo,
+    p.STOCK_ACTUAL                AS StockActual,
+    p.STOCK_MINIMO                AS StockMinimo,
+    p.STOCK_ACTUAL * p.PRECIO_COMPRA AS ValorInventario,
+    CASE
+        WHEN p.STOCK_ACTUAL &lt;= 0                 THEN 'Agotado'
+        WHEN p.STOCK_ACTUAL &lt;  p.STOCK_MINIMO    THEN 'Bajo'
+        WHEN p.STOCK_ACTUAL &lt;= p.STOCK_MINIMO*2  THEN 'Normal'
+        ELSE 'Alto'
+    END AS EstadoStock
+FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCTOS p;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hechos_Inventario\Origen de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{81BD7563-5E5D-4A11-AB81-406B9EF9E203}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Dw_Frijol]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoProducto]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoProducto]"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoProducto]"
+                      name="CodigoProducto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCategoria]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCategoria]"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCategoria]"
+                      name="CodigoCategoria"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoUnidad]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoUnidad]"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoUnidad]"
+                      name="CodigoUnidad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoTiempo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoTiempo]"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoTiempo]"
+                      name="CodigoTiempo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[StockActual]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[StockActual]"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[StockActual]"
+                      name="StockActual"
+                      precision="12"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[StockMinimo]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[StockMinimo]"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[StockMinimo]"
+                      name="StockMinimo"
+                      precision="12"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ValorInventario]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ValorInventario]"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ValorInventario]"
+                      name="ValorInventario"
+                      precision="25"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[EstadoStock]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[EstadoStock]"
+                      length="7"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[EstadoStock]"
+                      name="EstadoStock"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoProducto]"
+                      dataType="i4"
+                      name="CodigoProducto" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCategoria]"
+                      dataType="i4"
+                      name="CodigoCategoria" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoUnidad]"
+                      dataType="i4"
+                      name="CodigoUnidad" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoTiempo]"
+                      dataType="i4"
+                      name="CodigoTiempo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[StockActual]"
+                      dataType="numeric"
+                      name="StockActual"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[StockMinimo]"
+                      dataType="numeric"
+                      name="StockMinimo"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ValorInventario]"
+                      dataType="numeric"
+                      name="ValorInventario"
+                      precision="25"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[EstadoStock]"
+                      dataType="wstr"
+                      length="7"
+                      name="EstadoStock" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoProducto]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoProducto]"
+                      name="CodigoProducto" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCategoria]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCategoria]"
+                      name="CodigoCategoria" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoUnidad]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoUnidad]"
+                      name="CodigoUnidad" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoTiempo]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoTiempo]"
+                      name="CodigoTiempo" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[StockActual]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[StockActual]"
+                      name="StockActual"
+                      precision="12"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[StockMinimo]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[StockMinimo]"
+                      name="StockMinimo"
+                      precision="12"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ValorInventario]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ValorInventario]"
+                      name="ValorInventario"
+                      precision="25"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[EstadoStock]"
+                      dataType="wstr"
+                      length="7"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[EstadoStock]"
+                      name="EstadoStock" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Hechos_Inventario.Paths[Salida de origen de ADO NET]"
+              endId="Package\Hechos_Inventario\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Hechos_Inventario\Origen de ADO NET.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Hechos_Inventario"
+          TopLeft="519.5,137.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Hechos_Inventario">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Hechos_Inventario\Origen de ADO NET"
+          TopLeft="94.5,60.5" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Hechos_Inventario\Destino de ADO NET"
+          TopLeft="447.5,68.5" />
+        <EdgeLayout
+          Id="Package\Hechos_Inventario.Paths[Salida de origen de ADO NET]"
+          TopLeft="266.5,81.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="181,8"
+              Start="0,0"
+              End="173.5,8">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="86.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="86.5,0"
+                    Point2="90.5,0"
+                    Point3="90.5,4" />
+                  <mssgle:LineSegment
+                    End="90.5,4" />
+                  <mssgle:CubicBezierSegment
+                    Point1="90.5,4"
+                    Point2="90.5,8"
+                    Point3="94.5,8" />
+                  <mssgle:LineSegment
+                    End="173.5,8" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Hechos_Inventario\Origen de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Hechos_Inventario\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

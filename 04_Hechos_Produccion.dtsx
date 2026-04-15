@@ -1,0 +1,559 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/14/2026 7:58:14 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-67DFFA9"
+  DTS:CreatorName="DESKTOP-67DFFA9\Alejandro"
+  DTS:DTSID="{D94E4634-0648-45F1-A46B-D5FA95FF691D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{016750C5-3B37-4A7B-9560-04F9FC05223A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Hechos_Produccion"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{08992378-AE6C-4C53-9107-E98071B0D586}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Hechos_Produccion"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Hechos_Produccion\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Hechos_Produccion"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hechos_Produccion\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{81BD7563-5E5D-4A11-AB81-406B9EF9E203}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Dw_Frijol]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoSocio]"
+                      cachedDataType="i4"
+                      cachedName="CodigoSocio"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoSocio]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoSocio]" />
+                    <inputColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoProducto]"
+                      cachedDataType="i4"
+                      cachedName="CodigoProducto"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoProducto]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoProducto]" />
+                    <inputColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoCiclo]"
+                      cachedDataType="i4"
+                      cachedName="CodigoCiclo"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoCiclo]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCiclo]" />
+                    <inputColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoTiempo]"
+                      cachedDataType="i4"
+                      cachedName="CodigoTiempo"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoTiempo]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoTiempo]" />
+                    <inputColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoUbicacion]"
+                      cachedDataType="i4"
+                      cachedName="CodigoUbicacion"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoUbicacion]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoUbicacion]" />
+                    <inputColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CantidadQuintales]"
+                      cachedDataType="numeric"
+                      cachedName="CantidadQuintales"
+                      cachedPrecision="12"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CantidadQuintales]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CantidadQuintales]" />
+                    <inputColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[AreaCultivada]"
+                      cachedDataType="numeric"
+                      cachedName="AreaCultivada"
+                      cachedPrecision="12"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[AreaCultivada]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[AreaCultivada]" />
+                    <inputColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Rendimiento]"
+                      cachedDataType="numeric"
+                      cachedName="Rendimiento"
+                      cachedPrecision="27"
+                      cachedScale="15"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Rendimiento]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Rendimiento]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Codigo]"
+                      dataType="i4"
+                      name="Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoSocio]"
+                      dataType="i4"
+                      name="CodigoSocio" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoProducto]"
+                      dataType="i4"
+                      name="CodigoProducto" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoCiclo]"
+                      dataType="i4"
+                      name="CodigoCiclo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoTiempo]"
+                      dataType="i4"
+                      name="CodigoTiempo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoUbicacion]"
+                      dataType="i4"
+                      name="CodigoUbicacion" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CantidadQuintales]"
+                      dataType="numeric"
+                      name="CantidadQuintales"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[AreaCultivada]"
+                      dataType="numeric"
+                      name="AreaCultivada"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Rendimiento]"
+                      dataType="numeric"
+                      name="Rendimiento"
+                      precision="12"
+                      scale="4" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Hechos_Produccion\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Produccion\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Produccion\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Hechos_Produccion\Origen de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    pr.ID_SOCIO      AS CodigoSocio,
+    pr.ID_PRODUCTO   AS CodigoProducto,
+    pr.ID_CICLO      AS CodigoCiclo,
+    YEAR(pr.FECHA_COSECHA) * 100 + MONTH(pr.FECHA_COSECHA) AS CodigoTiempo,
+    s.ID_MUNICIPIO   AS CodigoUbicacion,
+    pr.CANTIDAD_QUINTALES            AS CantidadQuintales,
+    ISNULL(pr.AREA_CULTIVADA, 0)     AS AreaCultivada,
+    CASE WHEN ISNULL(pr.AREA_CULTIVADA, 0) = 0 THEN 0
+         ELSE pr.CANTIDAD_QUINTALES / pr.AREA_CULTIVADA END AS Rendimiento
+FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCCION pr
+INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.SOCIOS s ON pr.ID_SOCIO = s.ID_SOCIO;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hechos_Produccion\Origen de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{81BD7563-5E5D-4A11-AB81-406B9EF9E203}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Dw_Frijol]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoSocio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoSocio]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoSocio]"
+                      name="CodigoSocio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoProducto]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoProducto]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoProducto]"
+                      name="CodigoProducto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCiclo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCiclo]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCiclo]"
+                      name="CodigoCiclo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoTiempo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoTiempo]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoTiempo]"
+                      name="CodigoTiempo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoUbicacion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoUbicacion]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoUbicacion]"
+                      name="CodigoUbicacion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CantidadQuintales]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CantidadQuintales]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CantidadQuintales]"
+                      name="CantidadQuintales"
+                      precision="12"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[AreaCultivada]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[AreaCultivada]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[AreaCultivada]"
+                      name="AreaCultivada"
+                      precision="12"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Rendimiento]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Rendimiento]"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Rendimiento]"
+                      name="Rendimiento"
+                      precision="27"
+                      scale="15"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoSocio]"
+                      dataType="i4"
+                      name="CodigoSocio" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoProducto]"
+                      dataType="i4"
+                      name="CodigoProducto" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCiclo]"
+                      dataType="i4"
+                      name="CodigoCiclo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoTiempo]"
+                      dataType="i4"
+                      name="CodigoTiempo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoUbicacion]"
+                      dataType="i4"
+                      name="CodigoUbicacion" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CantidadQuintales]"
+                      dataType="numeric"
+                      name="CantidadQuintales"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[AreaCultivada]"
+                      dataType="numeric"
+                      name="AreaCultivada"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Rendimiento]"
+                      dataType="numeric"
+                      name="Rendimiento"
+                      precision="27"
+                      scale="15" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoSocio]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoSocio]"
+                      name="CodigoSocio" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoProducto]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoProducto]"
+                      name="CodigoProducto" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCiclo]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCiclo]"
+                      name="CodigoCiclo" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoTiempo]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoTiempo]"
+                      name="CodigoTiempo" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoUbicacion]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoUbicacion]"
+                      name="CodigoUbicacion" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CantidadQuintales]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CantidadQuintales]"
+                      name="CantidadQuintales"
+                      precision="12"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[AreaCultivada]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[AreaCultivada]"
+                      name="AreaCultivada"
+                      precision="12"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Rendimiento]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Rendimiento]"
+                      name="Rendimiento"
+                      precision="27"
+                      scale="15" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Hechos_Produccion.Paths[Salida de origen de ADO NET]"
+              endId="Package\Hechos_Produccion\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Hechos_Produccion\Origen de ADO NET.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Hechos_Produccion"
+          TopLeft="408.5,150.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Hechos_Produccion">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Hechos_Produccion\Origen de ADO NET"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Hechos_Produccion\Destino de ADO NET"
+          TopLeft="350.5,30.5" />
+        <EdgeLayout
+          Id="Package\Hechos_Produccion.Paths[Salida de origen de ADO NET]"
+          TopLeft="177.5,26.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="173,25"
+              Start="0,0"
+              End="165.5,25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="82.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="82.5,0"
+                    Point2="86.5,0"
+                    Point3="86.5,4" />
+                  <mssgle:LineSegment
+                    End="86.5,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="86.5,21"
+                    Point2="86.5,25"
+                    Point3="90.5,25" />
+                  <mssgle:LineSegment
+                    End="165.5,25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Hechos_Produccion\Origen de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Hechos_Produccion\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

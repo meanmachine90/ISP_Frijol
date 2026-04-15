@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Localhost.DbMultidimensionales_Proyecto3_Frijol"
+  DTS:DTSID="{DFB77B23-07B3-41D6-8040-BBDB8FBF2284}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=Localhost;Initial Catalog=DbMultidimensionales_Proyecto3_Frijol;Integrated Security=True;TrustServerCertificate=True;Application Name=SSIS-Integration Services Project1-{DFB77B23-07B3-41D6-8040-BBDB8FBF2284}Localhost.DbMultidimensionales_Proyecto3_Frijol;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

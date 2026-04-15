@@ -1,0 +1,702 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/14/2026 7:58:00 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-67DFFA9"
+  DTS:CreatorName="DESKTOP-67DFFA9\Alejandro"
+  DTS:DTSID="{8075BB34-701F-4806-9820-5D72B26D5785}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{19233B5F-72D9-4AAB-9C6C-DDF31FCC69D9}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Hechos_Compras"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{4CFF8F6E-D69A-45E3-B94F-93CA4C2BA007}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Hechos_Compras"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Hechos_Compras\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Hechos_Compras"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hechos_Compras\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{81BD7563-5E5D-4A11-AB81-406B9EF9E203}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Dw_Frijol]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoProveedor]"
+                      cachedDataType="i4"
+                      cachedName="CodigoProveedor"
+                      externalMetadataColumnId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoProveedor]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoProveedor]" />
+                    <inputColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoEmpleado]"
+                      cachedDataType="i4"
+                      cachedName="CodigoEmpleado"
+                      externalMetadataColumnId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoEmpleado]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoEmpleado]" />
+                    <inputColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoCargoEmpleado]"
+                      cachedDataType="i4"
+                      cachedName="CodigoCargoEmpleado"
+                      externalMetadataColumnId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoCargoEmpleado]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCargoEmpleado]" />
+                    <inputColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoProducto]"
+                      cachedDataType="i4"
+                      cachedName="CodigoProducto"
+                      externalMetadataColumnId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoProducto]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoProducto]" />
+                    <inputColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoUnidad]"
+                      cachedDataType="i4"
+                      cachedName="CodigoUnidad"
+                      externalMetadataColumnId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoUnidad]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoUnidad]" />
+                    <inputColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoTiempo]"
+                      cachedDataType="i4"
+                      cachedName="CodigoTiempo"
+                      externalMetadataColumnId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoTiempo]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoTiempo]" />
+                    <inputColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoUbicacion]"
+                      cachedDataType="i4"
+                      cachedName="CodigoUbicacion"
+                      externalMetadataColumnId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoUbicacion]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoUbicacion]" />
+                    <inputColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Cantidad]"
+                      cachedDataType="numeric"
+                      cachedName="Cantidad"
+                      cachedPrecision="12"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cantidad]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Cantidad]" />
+                    <inputColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[PrecioUnitario]"
+                      cachedDataType="numeric"
+                      cachedName="PrecioUnitario"
+                      cachedPrecision="12"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[PrecioUnitario]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[PrecioUnitario]" />
+                    <inputColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Subtotal]"
+                      cachedDataType="numeric"
+                      cachedName="Subtotal"
+                      cachedPrecision="25"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Subtotal]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Subtotal]" />
+                    <inputColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Impuesto]"
+                      cachedDataType="numeric"
+                      cachedName="Impuesto"
+                      cachedPrecision="38"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Impuesto]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Impuesto]" />
+                    <inputColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Total]"
+                      cachedDataType="numeric"
+                      cachedName="Total"
+                      cachedPrecision="38"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Total]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Total]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Codigo]"
+                      dataType="i4"
+                      name="Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoProveedor]"
+                      dataType="i4"
+                      name="CodigoProveedor" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoEmpleado]"
+                      dataType="i4"
+                      name="CodigoEmpleado" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoCargoEmpleado]"
+                      dataType="i4"
+                      name="CodigoCargoEmpleado" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoProducto]"
+                      dataType="i4"
+                      name="CodigoProducto" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoUnidad]"
+                      dataType="i4"
+                      name="CodigoUnidad" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoTiempo]"
+                      dataType="i4"
+                      name="CodigoTiempo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoUbicacion]"
+                      dataType="i4"
+                      name="CodigoUbicacion" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cantidad]"
+                      dataType="numeric"
+                      name="Cantidad"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[PrecioUnitario]"
+                      dataType="numeric"
+                      name="PrecioUnitario"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Subtotal]"
+                      dataType="numeric"
+                      name="Subtotal"
+                      precision="14"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Impuesto]"
+                      dataType="numeric"
+                      name="Impuesto"
+                      precision="14"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Total]"
+                      dataType="numeric"
+                      name="Total"
+                      precision="14"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Hechos_Compras\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Compras\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Compras\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Hechos_Compras\Origen de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    co.ID_PROVEEDOR                                      AS CodigoProveedor,
+    co.ID_EMPLEADO                                       AS CodigoEmpleado,
+    e.ID_CARGO_EMPLEADO                                  AS CodigoCargoEmpleado,
+    cd.ID_PRODUCTO                                       AS CodigoProducto,
+    p.ID_UNIDAD                                          AS CodigoUnidad,
+    YEAR(co.FECHA_COMPRA) * 100 + MONTH(co.FECHA_COMPRA) AS CodigoTiempo,
+    pr.ID_MUNICIPIO                                      AS CodigoUbicacion,
+    cd.CANTIDAD                                          AS Cantidad,
+    cd.PRECIO_UNITARIO                                   AS PrecioUnitario,
+    cd.CANTIDAD * cd.PRECIO_UNITARIO                     AS Subtotal,
+    CASE WHEN co.SUBTOTAL &gt; 0
+         THEN (co.IMPUESTO / co.SUBTOTAL) * (cd.CANTIDAD * cd.PRECIO_UNITARIO)
+         ELSE 0 END                                      AS Impuesto,
+    (cd.CANTIDAD * cd.PRECIO_UNITARIO)
+        + CASE WHEN co.SUBTOTAL &gt; 0
+               THEN (co.IMPUESTO / co.SUBTOTAL) * (cd.CANTIDAD * cd.PRECIO_UNITARIO)
+               ELSE 0 END                                AS Total
+FROM DbMultidimensionales_Proyecto3_Frijol.dbo.COMPRAS co
+INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.COMPRAS_DETALLE cd ON co.ID_COMPRA = cd.ID_COMPRA
+INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.PROVEEDORES pr     ON co.ID_PROVEEDOR = pr.ID_PROVEEDOR
+INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.EMPLEADOS e        ON co.ID_EMPLEADO = e.ID_EMPLEADO
+INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCTOS p        ON cd.ID_PRODUCTO = p.ID_PRODUCTO;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hechos_Compras\Origen de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{81BD7563-5E5D-4A11-AB81-406B9EF9E203}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Dw_Frijol]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoProveedor]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoProveedor]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoProveedor]"
+                      name="CodigoProveedor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoEmpleado]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoEmpleado]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoEmpleado]"
+                      name="CodigoEmpleado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCargoEmpleado]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCargoEmpleado]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCargoEmpleado]"
+                      name="CodigoCargoEmpleado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoProducto]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoProducto]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoProducto]"
+                      name="CodigoProducto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoUnidad]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoUnidad]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoUnidad]"
+                      name="CodigoUnidad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoTiempo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoTiempo]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoTiempo]"
+                      name="CodigoTiempo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoUbicacion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoUbicacion]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoUbicacion]"
+                      name="CodigoUbicacion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Cantidad]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Cantidad]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Cantidad]"
+                      name="Cantidad"
+                      precision="12"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[PrecioUnitario]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[PrecioUnitario]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[PrecioUnitario]"
+                      name="PrecioUnitario"
+                      precision="12"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Subtotal]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Subtotal]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Subtotal]"
+                      name="Subtotal"
+                      precision="25"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Impuesto]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Impuesto]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Impuesto]"
+                      name="Impuesto"
+                      precision="38"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Total]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Total]"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Total]"
+                      name="Total"
+                      precision="38"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoProveedor]"
+                      dataType="i4"
+                      name="CodigoProveedor" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoEmpleado]"
+                      dataType="i4"
+                      name="CodigoEmpleado" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCargoEmpleado]"
+                      dataType="i4"
+                      name="CodigoCargoEmpleado" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoProducto]"
+                      dataType="i4"
+                      name="CodigoProducto" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoUnidad]"
+                      dataType="i4"
+                      name="CodigoUnidad" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoTiempo]"
+                      dataType="i4"
+                      name="CodigoTiempo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoUbicacion]"
+                      dataType="i4"
+                      name="CodigoUbicacion" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Cantidad]"
+                      dataType="numeric"
+                      name="Cantidad"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[PrecioUnitario]"
+                      dataType="numeric"
+                      name="PrecioUnitario"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Subtotal]"
+                      dataType="numeric"
+                      name="Subtotal"
+                      precision="25"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Impuesto]"
+                      dataType="numeric"
+                      name="Impuesto"
+                      precision="38"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Total]"
+                      dataType="numeric"
+                      name="Total"
+                      precision="38"
+                      scale="6" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoProveedor]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoProveedor]"
+                      name="CodigoProveedor" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoEmpleado]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoEmpleado]"
+                      name="CodigoEmpleado" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCargoEmpleado]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCargoEmpleado]"
+                      name="CodigoCargoEmpleado" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoProducto]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoProducto]"
+                      name="CodigoProducto" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoUnidad]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoUnidad]"
+                      name="CodigoUnidad" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoTiempo]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoTiempo]"
+                      name="CodigoTiempo" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoUbicacion]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoUbicacion]"
+                      name="CodigoUbicacion" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Cantidad]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Cantidad]"
+                      name="Cantidad"
+                      precision="12"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[PrecioUnitario]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[PrecioUnitario]"
+                      name="PrecioUnitario"
+                      precision="12"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Subtotal]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Subtotal]"
+                      name="Subtotal"
+                      precision="25"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Impuesto]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Impuesto]"
+                      name="Impuesto"
+                      precision="38"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Total]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Total]"
+                      name="Total"
+                      precision="38"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Hechos_Compras.Paths[Salida de origen de ADO NET]"
+              endId="Package\Hechos_Compras\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Hechos_Compras\Origen de ADO NET.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Hechos_Compras"
+          TopLeft="450.5,131.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Hechos_Compras">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Hechos_Compras\Origen de ADO NET"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Hechos_Compras\Destino de ADO NET"
+          TopLeft="473.5,48.5" />
+        <EdgeLayout
+          Id="Package\Hechos_Compras.Paths[Salida de origen de ADO NET]"
+          TopLeft="177.5,26.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="296,43"
+              Start="0,0"
+              End="288.5,43">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="144,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="144,0"
+                    Point2="148,0"
+                    Point3="148,4" />
+                  <mssgle:LineSegment
+                    End="148,39" />
+                  <mssgle:CubicBezierSegment
+                    Point1="148,39"
+                    Point2="148,43"
+                    Point3="152,43" />
+                  <mssgle:LineSegment
+                    End="288.5,43" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Hechos_Compras\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Hechos_Compras\Origen de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

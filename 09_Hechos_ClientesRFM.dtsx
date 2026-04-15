@@ -1,0 +1,609 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/14/2026 8:00:36 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-67DFFA9"
+  DTS:CreatorName="DESKTOP-67DFFA9\Alejandro"
+  DTS:DTSID="{CF244E7A-1AD1-4A63-933B-069C23DFBB7E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{52CF0226-C7DB-4399-88E5-D39799E4B6DC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Hechos_Clientes"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{1365FBBE-A8BC-45DA-B33A-EA3B3D00D15E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Hechos_Clientes"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Hechos_Clientes\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Hechos_ClientesRFM"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hechos_Clientes\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{81BD7563-5E5D-4A11-AB81-406B9EF9E203}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Dw_Frijol]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoCliente]"
+                      cachedDataType="i4"
+                      cachedName="CodigoCliente"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoCliente]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCliente]" />
+                    <inputColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoTiempo]"
+                      cachedDataType="i4"
+                      cachedName="CodigoTiempo"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoTiempo]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoTiempo]" />
+                    <inputColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Recency]"
+                      cachedDataType="i4"
+                      cachedName="Recency"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Recency]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Recency]" />
+                    <inputColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Frequency]"
+                      cachedDataType="i4"
+                      cachedName="Frequency"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Frequency]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Frequency]" />
+                    <inputColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Monetary]"
+                      cachedDataType="numeric"
+                      cachedName="Monetary"
+                      cachedPrecision="38"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Monetary]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Monetary]" />
+                    <inputColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[PuntajeR]"
+                      cachedDataType="i4"
+                      cachedName="PuntajeR"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[PuntajeR]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[PuntajeR]" />
+                    <inputColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[PuntajeF]"
+                      cachedDataType="i4"
+                      cachedName="PuntajeF"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[PuntajeF]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[PuntajeF]" />
+                    <inputColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[PuntajeM]"
+                      cachedDataType="i4"
+                      cachedName="PuntajeM"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[PuntajeM]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[PuntajeM]" />
+                    <inputColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[SegmentoCliente]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SegmentoCliente"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[SegmentoCliente]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[SegmentoCliente]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Codigo]"
+                      dataType="i4"
+                      name="Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoCliente]"
+                      dataType="i4"
+                      name="CodigoCliente" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoTiempo]"
+                      dataType="i4"
+                      name="CodigoTiempo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Recency]"
+                      dataType="i4"
+                      name="Recency" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Frequency]"
+                      dataType="i4"
+                      name="Frequency" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Monetary]"
+                      dataType="numeric"
+                      name="Monetary"
+                      precision="14"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[PuntajeR]"
+                      dataType="i4"
+                      name="PuntajeR" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[PuntajeF]"
+                      dataType="i4"
+                      name="PuntajeF" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[PuntajeM]"
+                      dataType="i4"
+                      name="PuntajeM" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[SegmentoCliente]"
+                      dataType="wstr"
+                      length="30"
+                      name="SegmentoCliente" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Hechos_Clientes\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Clientes\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Clientes\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Hechos_Clientes\Origen de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">;WITH RFM AS (
+    SELECT
+        c.ID_CLIENTE AS CodigoCliente,
+        ISNULL(DATEDIFF(DAY, MAX(v.FECHA_VENTA), GETDATE()), 9999) AS Recency,
+        COUNT(DISTINCT v.ID_VENTA) AS Frequency,
+        ISNULL(SUM(v.TOTAL), 0)    AS Monetary
+    FROM DbMultidimensionales_Proyecto3_Frijol.dbo.CLIENTES c
+    LEFT JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.VENTAS v ON c.ID_CLIENTE = v.ID_CLIENTE
+    GROUP BY c.ID_CLIENTE
+),
+RFM_Scored AS (
+    SELECT
+        CodigoCliente, Recency, Frequency, Monetary,
+        CASE
+            WHEN Recency &lt;=  30 THEN 5
+            WHEN Recency &lt;=  60 THEN 4
+            WHEN Recency &lt;=  90 THEN 3
+            WHEN Recency &lt;= 180 THEN 2
+            ELSE 1
+        END AS PuntajeR,
+        CASE
+            WHEN Frequency &gt;= 20 THEN 5
+            WHEN Frequency &gt;= 10 THEN 4
+            WHEN Frequency &gt;=  5 THEN 3
+            WHEN Frequency &gt;=  1 THEN 2
+            ELSE 1
+        END AS PuntajeF,
+        CASE
+            WHEN Monetary &gt;= 50000 THEN 5
+            WHEN Monetary &gt;= 20000 THEN 4
+            WHEN Monetary &gt;=  5000 THEN 3
+            WHEN Monetary &gt;=   500 THEN 2
+            ELSE 1
+        END AS PuntajeM
+    FROM RFM
+)
+SELECT
+    CodigoCliente,
+    YEAR(GETDATE()) * 100 + MONTH(GETDATE()) AS CodigoTiempo,
+    Recency, Frequency, Monetary,
+    PuntajeR, PuntajeF, PuntajeM,
+    CASE
+        WHEN (PuntajeR + PuntajeF + PuntajeM) &gt;= 13 THEN 'Champions'
+        WHEN (PuntajeR + PuntajeF + PuntajeM) &gt;= 10 THEN 'Loyal'
+        WHEN (PuntajeR + PuntajeF + PuntajeM) &gt;=  7 THEN 'Potential'
+        WHEN (PuntajeR + PuntajeF + PuntajeM) &gt;=  5 THEN 'At Risk'
+        ELSE 'Lost'
+    END AS SegmentoCliente
+FROM RFM_Scored;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hechos_Clientes\Origen de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{81BD7563-5E5D-4A11-AB81-406B9EF9E203}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Dw_Frijol]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCliente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCliente]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCliente]"
+                      name="CodigoCliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoTiempo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoTiempo]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoTiempo]"
+                      name="CodigoTiempo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Recency]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Recency]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Recency]"
+                      name="Recency"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Frequency]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Frequency]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Frequency]"
+                      name="Frequency"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Monetary]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Monetary]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Monetary]"
+                      name="Monetary"
+                      precision="38"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[PuntajeR]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[PuntajeR]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[PuntajeR]"
+                      name="PuntajeR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[PuntajeF]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[PuntajeF]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[PuntajeF]"
+                      name="PuntajeF"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[PuntajeM]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[PuntajeM]"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[PuntajeM]"
+                      name="PuntajeM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[SegmentoCliente]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[SegmentoCliente]"
+                      length="9"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[SegmentoCliente]"
+                      name="SegmentoCliente"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCliente]"
+                      dataType="i4"
+                      name="CodigoCliente" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoTiempo]"
+                      dataType="i4"
+                      name="CodigoTiempo" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Recency]"
+                      dataType="i4"
+                      name="Recency" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Frequency]"
+                      dataType="i4"
+                      name="Frequency" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Monetary]"
+                      dataType="numeric"
+                      name="Monetary"
+                      precision="38"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[PuntajeR]"
+                      dataType="i4"
+                      name="PuntajeR" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[PuntajeF]"
+                      dataType="i4"
+                      name="PuntajeF" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[PuntajeM]"
+                      dataType="i4"
+                      name="PuntajeM" />
+                    <externalMetadataColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[SegmentoCliente]"
+                      dataType="wstr"
+                      length="9"
+                      name="SegmentoCliente" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCliente]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCliente]"
+                      name="CodigoCliente" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoTiempo]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoTiempo]"
+                      name="CodigoTiempo" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Recency]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Recency]"
+                      name="Recency" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Frequency]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Frequency]"
+                      name="Frequency" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Monetary]"
+                      dataType="numeric"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Monetary]"
+                      name="Monetary"
+                      precision="38"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[PuntajeR]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[PuntajeR]"
+                      name="PuntajeR" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[PuntajeF]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[PuntajeF]"
+                      name="PuntajeF" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[PuntajeM]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[PuntajeM]"
+                      name="PuntajeM" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[SegmentoCliente]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[SegmentoCliente]"
+                      name="SegmentoCliente" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Hechos_Clientes.Paths[Salida de origen de ADO NET]"
+              endId="Package\Hechos_Clientes\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Hechos_Clientes\Origen de ADO NET.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Hechos_Clientes"
+          TopLeft="362.5,106.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Hechos_Clientes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Hechos_Clientes\Origen de ADO NET"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Hechos_Clientes\Destino de ADO NET"
+          TopLeft="570.5,55.5" />
+        <EdgeLayout
+          Id="Package\Hechos_Clientes.Paths[Salida de origen de ADO NET]"
+          TopLeft="177.5,26.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="393,50"
+              Start="0,0"
+              End="385.5,50">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="192.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="192.5,0"
+                    Point2="196.5,0"
+                    Point3="196.5,4" />
+                  <mssgle:LineSegment
+                    End="196.5,46" />
+                  <mssgle:CubicBezierSegment
+                    Point1="196.5,46"
+                    Point2="196.5,50"
+                    Point3="200.5,50" />
+                  <mssgle:LineSegment
+                    End="385.5,50" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Hechos_Clientes\Origen de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Hechos_Clientes\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

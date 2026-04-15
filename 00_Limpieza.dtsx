@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/11/2026 11:16:50 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-67DFFA9"
+  DTS:CreatorName="DESKTOP-67DFFA9\Alejandro"
+  DTS:DTSID="{71F20A9D-0BA6-4D04-B3EF-842FED56B2EF}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Limpieza"
+  DTS:PackageType="5"
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{C69BD31A-6DAA-4A8A-A591-5CA7B04E7552}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Inicializar"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{426fb93f-32ca-4de4-968b-0ef7ef6e4270}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Inicializar"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{81BD7563-5E5D-4A11-AB81-406B9EF9E203}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Hechos_Ventas;&#xA;TRUNCATE TABLE Hechos_Compras;&#xA;TRUNCATE TABLE Hechos_Produccion;&#xA;TRUNCATE TABLE Hechos_Planilla;&#xA;TRUNCATE TABLE Hechos_Inventario;&#xA;TRUNCATE TABLE Hechos_Rentabilidad;&#xA;TRUNCATE TABLE Hechos_Socios;&#xA;TRUNCATE TABLE Hechos_ClientesRFM;&#xA;&#xA;DELETE FROM Dw_Productos; &#xA;DELETE FROM Dw_Categorias;&#xA;DELETE FROM Dw_Clientes;&#xA;DELETE FROM Dw_Empleados;&#xA;DELETE FROM Dw_CargosEmpleado;&#xA;DELETE FROM Dw_Proveedores;&#xA;DELETE FROM Dw_Socios;&#xA;DELETE FROM Dw_Ciclos;&#xA;DELETE FROM Dw_Tiempo;&#xA;DELETE FROM Dw_FormaPago;&#xA;DELETE FROM Dw_ConceptosPago;&#xA;DELETE FROM Dw_Instituciones;&#xA;DELETE FROM Dw_UnidadesMedida;&#xA;DELETE FROM Dw_Ubicaciones;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="123,42"
+          Id="Package\Inicializar"
+          TopLeft="637,118" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
