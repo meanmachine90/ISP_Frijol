@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{0F2961A5-5362-4EBA-A153-9AC59A299143}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{8EF6E91A-039C-45DA-A72C-ADBB73246B55}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -2657,12 +2657,6 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.INSTITUCIONES_FINANCIERAS;</prope
                       externalMetadataColumnId="Package\DW_Productos\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[NombreProducto]"
                       lineageId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[NombreProducto]" />
                     <inputColumn
-                      refId="Package\DW_Productos\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoCategoria]"
-                      cachedDataType="i4"
-                      cachedName="CodigoCategoria"
-                      externalMetadataColumnId="Package\DW_Productos\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoCategoria]"
-                      lineageId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCategoria]" />
-                    <inputColumn
                       refId="Package\DW_Productos\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Precio]"
                       cachedDataType="numeric"
                       cachedName="Precio"
@@ -2697,10 +2691,6 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.INSTITUCIONES_FINANCIERAS;</prope
                       dataType="wstr"
                       length="100"
                       name="NombreProducto" />
-                    <externalMetadataColumn
-                      refId="Package\DW_Productos\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoCategoria]"
-                      dataType="i4"
-                      name="CodigoCategoria" />
                     <externalMetadataColumn
                       refId="Package\DW_Productos\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Precio]"
                       dataType="numeric"
@@ -2763,7 +2753,6 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.INSTITUCIONES_FINANCIERAS;</prope
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
     p.ID_PRODUCTO   AS CodigoProducto,
     p.NOMBRE        AS NombreProducto,
-    p.ID_CATEGORIA  AS CodigoCategoria,
     p.PRECIO_VENTA  AS Precio,
     p.STOCK_ACTUAL  AS UnidadesEnExistencia,
     CASE WHEN p.ACTIVO = 1 THEN 'Activo' ELSE 'Inactivo' END AS EstadoProducto
@@ -2824,15 +2813,6 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCTOS p;</property>
                       name="NombreProducto"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCategoria]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCategoria]"
-                      lineageId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCategoria]"
-                      name="CodigoCategoria"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Precio]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversión"
@@ -2877,10 +2857,6 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCTOS p;</property>
                       length="100"
                       name="NombreProducto" />
                     <externalMetadataColumn
-                      refId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCategoria]"
-                      dataType="i4"
-                      name="CodigoCategoria" />
-                    <externalMetadataColumn
                       refId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Precio]"
                       dataType="numeric"
                       name="Precio"
@@ -2915,11 +2891,6 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCTOS p;</property>
                       length="100"
                       lineageId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[NombreProducto]"
                       name="NombreProducto" />
-                    <outputColumn
-                      refId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCategoria]"
-                      dataType="i4"
-                      lineageId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCategoria]"
-                      name="CodigoCategoria" />
                     <outputColumn
                       refId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Precio]"
                       dataType="numeric"
@@ -4652,16 +4623,6 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
-  <DTS:PrecedenceConstraints>
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
-      DTS:CreationName=""
-      DTS:DTSID="{20A264A6-3475-43E2-946C-D853E54AE151}"
-      DTS:From="Package\DW_Categorias"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Restricción 2"
-      DTS:To="Package\DW_Productos" />
-  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
 <!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
@@ -4673,7 +4634,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
           Size="178,42"
           Id="Package\Dw_CargosEmpleado"
@@ -4709,7 +4670,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
         <NodeLayout
           Size="148,42"
           Id="Package\DW_Productos"
-          TopLeft="885,27" />
+          TopLeft="888,27" />
         <NodeLayout
           Size="160,42"
           Id="Package\DW_Proveedores"
@@ -4730,28 +4691,6 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
           Size="177,42"
           Id="Package\Dw_UnidadesMedida"
           TopLeft="596.5,250.5" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 2]"
-          TopLeft="750,48.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="135,0"
-              Start="0,0"
-              End="127.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="127.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -4759,15 +4698,15 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\Dw_CargosEmpleado">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="172,42"
-          Id="Package\Dw_CargosEmpleado\Origen de ADO NET"
-          TopLeft="5.5,5.5" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="176,42"
           Id="Package\Dw_CargosEmpleado\Destino de ADO NET"
           TopLeft="385.5,42.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Dw_CargosEmpleado\Origen de ADO NET"
+          TopLeft="5.5,5.5" />
         <EdgeLayout
           Id="Package\Dw_CargosEmpleado.Paths[Salida de origen de ADO NET]"
           TopLeft="177.5,26.5">
@@ -4799,7 +4738,9 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4825,7 +4766,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Categorias">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="172,42"
           Id="Package\DW_Categorias\Origen de ADO NET"
@@ -4865,7 +4806,9 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4891,15 +4834,15 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Ciclos">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="172,42"
-          Id="Package\DW_Ciclos\Origen de ADO NET"
-          TopLeft="5.5,5.5" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="176,42"
           Id="Package\DW_Ciclos\Destino de ADO NET"
           TopLeft="502.5,38.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\DW_Ciclos\Origen de ADO NET"
+          TopLeft="5.5,5.5" />
         <EdgeLayout
           Id="Package\DW_Ciclos.Paths[Salida de origen de ADO NET]"
           TopLeft="177.5,26.5">
@@ -4931,7 +4874,9 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4957,15 +4902,15 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Clientes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="172,42"
-          Id="Package\DW_Clientes\Origen de ADO NET"
-          TopLeft="5.5,5.5" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="176,42"
           Id="Package\DW_Clientes\Destino de ADO NET"
           TopLeft="478.5,36.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\DW_Clientes\Origen de ADO NET"
+          TopLeft="5.5,5.5" />
         <EdgeLayout
           Id="Package\DW_Clientes.Paths[Salida de origen de ADO NET]"
           TopLeft="177.5,26.5">
@@ -4997,7 +4942,9 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5023,15 +4970,15 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\Dw_ConceptosPago">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="172,42"
-          Id="Package\Dw_ConceptosPago\Origen de ADO NET"
-          TopLeft="5.5,5.5" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="176,42"
           Id="Package\Dw_ConceptosPago\Destino de ADO NET"
           TopLeft="329.5,22.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Dw_ConceptosPago\Origen de ADO NET"
+          TopLeft="5.5,5.5" />
         <EdgeLayout
           Id="Package\Dw_ConceptosPago.Paths[Salida de origen de ADO NET]"
           TopLeft="177.5,26.5">
@@ -5063,7 +5010,9 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5089,7 +5038,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Empleados">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="172,42"
           Id="Package\DW_Empleados\Origen de ADO NET"
@@ -5117,7 +5066,9 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5143,7 +5094,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_FormasPagos">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="172,42"
           Id="Package\DW_FormasPagos\Origen de ADO NET"
@@ -5171,7 +5122,9 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5197,15 +5150,15 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\Dw_Instituciones">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="172,42"
-          Id="Package\Dw_Instituciones\Origen de ADO NET"
-          TopLeft="5.5,5.5" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="176,42"
           Id="Package\Dw_Instituciones\Destino de ADO NET"
           TopLeft="310.5,6.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Dw_Instituciones\Origen de ADO NET"
+          TopLeft="5.5,5.5" />
         <EdgeLayout
           Id="Package\Dw_Instituciones.Paths[Salida de origen de ADO NET]"
           TopLeft="177.5,27">
@@ -5225,7 +5178,9 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5259,33 +5214,33 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
         <NodeLayout
           Size="176,42"
           Id="Package\DW_Productos\Destino de ADO NET"
-          TopLeft="382.5,18.5" />
+          TopLeft="377.5,18.5" />
         <EdgeLayout
           Id="Package\DW_Productos.Paths[Salida de origen de ADO NET]"
           TopLeft="177.5,26.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="205,13"
+              EndConnector="200,13"
               Start="0,0"
-              End="197.5,13">
+              End="192.5,13">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="98.5,0" />
+                    End="96,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="98.5,0"
-                    Point2="102.5,0"
-                    Point3="102.5,4" />
+                    Point1="96,0"
+                    Point2="100,0"
+                    Point3="100,4" />
                   <mssgle:LineSegment
-                    End="102.5,9" />
+                    End="100,9" />
                   <mssgle:CubicBezierSegment
-                    Point1="102.5,9"
-                    Point2="102.5,13"
-                    Point3="106.5,13" />
+                    Point1="100,9"
+                    Point2="100,13"
+                    Point3="104,13" />
                   <mssgle:LineSegment
-                    End="197.5,13" />
+                    End="192.5,13" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5317,7 +5272,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Proveedores">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="172,42"
           Id="Package\DW_Proveedores\Origen de ADO NET"
@@ -5357,7 +5312,9 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5383,7 +5340,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Socios">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="172,42"
           Id="Package\DW_Socios\Origen de ADO NET"
@@ -5423,7 +5380,9 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5449,15 +5408,15 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Tiempo">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="176,42"
-          Id="Package\DW_Tiempo\Destino de ADO NET"
-          TopLeft="535.5,104.5" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="172,42"
           Id="Package\DW_Tiempo\Origen de ADO NET"
           TopLeft="51.5,89.5" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\DW_Tiempo\Destino de ADO NET"
+          TopLeft="535.5,104.5" />
         <EdgeLayout
           Id="Package\DW_Tiempo.Paths[Salida de origen de ADO NET]"
           TopLeft="223.5,110.5">
@@ -5489,7 +5448,9 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5515,15 +5476,15 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Ubicaciones">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="172,42"
-          Id="Package\DW_Ubicaciones\Origen de ADO NET"
-          TopLeft="278,216" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="176,42"
           Id="Package\DW_Ubicaciones\Destino de ADO NET"
           TopLeft="681,226" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\DW_Ubicaciones\Origen de ADO NET"
+          TopLeft="278,216" />
         <EdgeLayout
           Id="Package\DW_Ubicaciones.Paths[Salida de origen de ADO NET]"
           TopLeft="450,237">
@@ -5555,7 +5516,9 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5581,7 +5544,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\Dw_UnidadesMedida">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="172,42"
           Id="Package\Dw_UnidadesMedida\Origen de ADO NET"
@@ -5621,7 +5584,9 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

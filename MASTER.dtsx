@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{3B2D60EE-23E4-42AE-99BF-E57C60F064C5}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{2F958435-DA12-4D33-B335-1383FA721134}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -275,13 +275,45 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="150,42"
-          Id="Package\EPT_Limpiezaq"
-          TopLeft="514.5,36.5" />
-        <NodeLayout
           Size="170,42"
           Id="Package\EPT_Dimensionales"
           TopLeft="510,155" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\EPT_Hechos_Clientes"
+          TopLeft="1489,328" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\EPT_Hechos_Compras"
+          TopLeft="481,328" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\EPT_Hechos_Inventqario"
+          TopLeft="250,328" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\EPT_Hechos_Planilla"
+          TopLeft="1290,328" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\EPT_Hechos_Produccion"
+          TopLeft="897,328" />
+        <NodeLayout
+          Size="201,42"
+          Id="Package\EPT_Hechos_Rentabilidad"
+          TopLeft="678,328" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\EPT_Hechos_Socios"
+          TopLeft="1112,328" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\EPT_Hechos_Ventas"
+          TopLeft="40,328" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\EPT_Limpiezaq"
+          TopLeft="514.5,36.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción]"
           TopLeft="592.25,78.5">
@@ -304,38 +336,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="175,42"
-          Id="Package\EPT_Hechos_Ventas"
-          TopLeft="40,328" />
-        <NodeLayout
-          Size="184,42"
-          Id="Package\EPT_Hechos_Compras"
-          TopLeft="481,328" />
-        <NodeLayout
-          Size="194,42"
-          Id="Package\EPT_Hechos_Produccion"
-          TopLeft="897,328" />
-        <NodeLayout
-          Size="176,42"
-          Id="Package\EPT_Hechos_Planilla"
-          TopLeft="1290,328" />
-        <NodeLayout
-          Size="180,42"
-          Id="Package\EPT_Hechos_Clientes"
-          TopLeft="1489,328" />
-        <NodeLayout
-          Size="197,42"
-          Id="Package\EPT_Hechos_Inventqario"
-          TopLeft="250,328" />
-        <NodeLayout
-          Size="201,42"
-          Id="Package\EPT_Hechos_Rentabilidad"
-          TopLeft="678,328" />
-        <NodeLayout
-          Size="173,42"
-          Id="Package\EPT_Hechos_Socios"
-          TopLeft="1112,328" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 1]"
           TopLeft="532,197">

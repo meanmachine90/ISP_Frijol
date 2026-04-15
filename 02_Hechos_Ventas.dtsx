@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{A3125BB7-F3AD-44B5-A1A5-5550F9090DF0}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{0D587817-8543-4DA6-AA2C-B12C7807726C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -98,6 +98,12 @@
                       cachedName="CodigoCargoEmpleado"
                       externalMetadataColumnId="Package\Hechos_Ventas\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoCargoEmpleado]"
                       lineageId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCargoEmpleado]" />
+                    <inputColumn
+                      refId="Package\Hechos_Ventas\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoCategoria]"
+                      cachedDataType="i4"
+                      cachedName="CodigoCategoria"
+                      externalMetadataColumnId="Package\Hechos_Ventas\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoCategoria]"
+                      lineageId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCategoria]" />
                     <inputColumn
                       refId="Package\Hechos_Ventas\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CodigoProducto]"
                       cachedDataType="i4"
@@ -196,6 +202,10 @@
                       dataType="i4"
                       name="CodigoCargoEmpleado" />
                     <externalMetadataColumn
+                      refId="Package\Hechos_Ventas\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoCategoria]"
+                      dataType="i4"
+                      name="CodigoCategoria" />
+                    <externalMetadataColumn
                       refId="Package\Hechos_Ventas\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoProducto]"
                       dataType="i4"
                       name="CodigoProducto" />
@@ -293,28 +303,17 @@
                   description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
-    v.ID_CLIENTE                                     AS CodigoCliente,
-    v.ID_EMPLEADO                                    AS CodigoEmpleado,
-    e.ID_CARGO_EMPLEADO                              AS CodigoCargoEmpleado,
-    vd.ID_PRODUCTO                                   AS CodigoProducto,
-    p.ID_UNIDAD                                      AS CodigoUnidad,
-    YEAR(v.FECHA_VENTA) * 100 + MONTH(v.FECHA_VENTA) AS CodigoTiempo,
-    fp.CodigoFormaPago                               AS CodigoFormaPago,
-    cl.ID_MUNICIPIO                                  AS CodigoUbicacion,
-    vd.CANTIDAD                                      AS Cantidad,
-    vd.PRECIO_UNITARIO                               AS PrecioUnitario,
-    vd.DESCUENTO                                     AS Descuento,
-    (vd.CANTIDAD * vd.PRECIO_UNITARIO) - vd.DESCUENTO                                     AS Subtotal,
-    vd.CANTIDAD * hp.PRECIO_COMPRA                                                        AS CostoTotal,
-    ((vd.CANTIDAD * vd.PRECIO_UNITARIO) - vd.DESCUENTO) - (vd.CANTIDAD * hp.PRECIO_COMPRA) AS Margen
-FROM DbMultidimensionales_Proyecto3_Frijol.dbo.VENTAS v
-INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.VENTAS_DETALLE vd   ON v.ID_VENTA = vd.ID_VENTA
-INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.CLIENTES cl         ON v.ID_CLIENTE = cl.ID_CLIENTE
-INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.EMPLEADOS e         ON v.ID_EMPLEADO = e.ID_EMPLEADO
-INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCTOS p         ON vd.ID_PRODUCTO = p.ID_PRODUCTO
-INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.HISTORIAL_PRECIOS hp ON vd.ID_HISTORIAL_PRECIO = hp.ID_HISTORIAL
-INNER JOIN Dw_FormaPago fp                                                ON fp.NombreFormaPago = v.FORMA_PAGO;</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        v.ID_CLIENTE AS CodigoCliente, v.ID_EMPLEADO AS CodigoEmpleado, e.ID_CARGO_EMPLEADO AS CodigoCargoEmpleado, p.ID_CATEGORIA AS CodigoCategoria, vd.ID_PRODUCTO AS CodigoProducto, 
+                         p.ID_UNIDAD AS CodigoUnidad, YEAR(v.FECHA_VENTA) * 100 + MONTH(v.FECHA_VENTA) AS CodigoTiempo, fp.CodigoFormaPago, cl.ID_MUNICIPIO AS CodigoUbicacion, vd.CANTIDAD AS Cantidad, 
+                         vd.PRECIO_UNITARIO AS PrecioUnitario, vd.DESCUENTO AS Descuento, vd.CANTIDAD * vd.PRECIO_UNITARIO - vd.DESCUENTO AS Subtotal, vd.CANTIDAD * hp.PRECIO_COMPRA AS CostoTotal, 
+                         (vd.CANTIDAD * vd.PRECIO_UNITARIO - vd.DESCUENTO) - vd.CANTIDAD * hp.PRECIO_COMPRA AS Margen
+FROM            DbMultidimensionales_Proyecto3_Frijol.dbo.VENTAS AS v INNER JOIN
+                         DbMultidimensionales_Proyecto3_Frijol.dbo.VENTAS_DETALLE AS vd ON v.ID_VENTA = vd.ID_VENTA INNER JOIN
+                         DbMultidimensionales_Proyecto3_Frijol.dbo.CLIENTES AS cl ON v.ID_CLIENTE = cl.ID_CLIENTE INNER JOIN
+                         DbMultidimensionales_Proyecto3_Frijol.dbo.EMPLEADOS AS e ON v.ID_EMPLEADO = e.ID_EMPLEADO INNER JOIN
+                         DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCTOS AS p ON vd.ID_PRODUCTO = p.ID_PRODUCTO INNER JOIN
+                         DbMultidimensionales_Proyecto3_Frijol.dbo.HISTORIAL_PRECIOS AS hp ON vd.ID_HISTORIAL_PRECIO = hp.ID_HISTORIAL INNER JOIN
+                         Dw_FormaPago AS fp ON fp.NombreFormaPago = v.FORMA_PAGO</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -377,6 +376,15 @@ INNER JOIN Dw_FormaPago fp                                                ON fp.
                       externalMetadataColumnId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCargoEmpleado]"
                       lineageId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCargoEmpleado]"
                       name="CodigoCargoEmpleado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCategoria]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCategoria]"
+                      lineageId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCategoria]"
+                      name="CodigoCategoria"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoProducto]"
@@ -505,6 +513,10 @@ INNER JOIN Dw_FormaPago fp                                                ON fp.
                       dataType="i4"
                       name="CodigoCargoEmpleado" />
                     <externalMetadataColumn
+                      refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCategoria]"
+                      dataType="i4"
+                      name="CodigoCategoria" />
+                    <externalMetadataColumn
                       refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoProducto]"
                       dataType="i4"
                       name="CodigoProducto" />
@@ -582,6 +594,11 @@ INNER JOIN Dw_FormaPago fp                                                ON fp.
                       dataType="i4"
                       lineageId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCargoEmpleado]"
                       name="CodigoCargoEmpleado" />
+                    <outputColumn
+                      refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCategoria]"
+                      dataType="i4"
+                      lineageId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCategoria]"
+                      name="CodigoCategoria" />
                     <outputColumn
                       refId="Package\Hechos_Ventas\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoProducto]"
                       dataType="i4"
@@ -703,39 +720,39 @@ INNER JOIN Dw_FormaPago fp                                                ON fp.
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="176,42"
-          Id="Package\Hechos_Ventas\Destino de ADO NET"
-          TopLeft="385.5,33.5" />
-        <NodeLayout
           Size="172,42"
           Id="Package\Hechos_Ventas\Origen de ADO NET"
           TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Hechos_Ventas\Destino de ADO NET"
+          TopLeft="504.5,66.5" />
         <EdgeLayout
           Id="Package\Hechos_Ventas.Paths[Salida de origen de ADO NET]"
           TopLeft="177.5,26.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="208,28"
+              EndConnector="327,61"
               Start="0,0"
-              End="200.5,28">
+              End="319.5,61">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="100,0" />
+                    End="159.5,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="100,0"
-                    Point2="104,0"
-                    Point3="104,4" />
+                    Point1="159.5,0"
+                    Point2="163.5,0"
+                    Point3="163.5,4" />
                   <mssgle:LineSegment
-                    End="104,24" />
+                    End="163.5,57" />
                   <mssgle:CubicBezierSegment
-                    Point1="104,24"
-                    Point2="104,28"
-                    Point3="108,28" />
+                    Point1="163.5,57"
+                    Point2="163.5,61"
+                    Point3="167.5,61" />
                   <mssgle:LineSegment
-                    End="200.5,28" />
+                    End="319.5,61" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -748,7 +765,7 @@ INNER JOIN Dw_FormaPago fp                                                ON fp.
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Hechos_Ventas\Destino de ADO NET">
+    design-time-name="Package\Hechos_Ventas\Origen de ADO NET">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -756,7 +773,7 @@ INNER JOIN Dw_FormaPago fp                                                ON fp.
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Hechos_Ventas\Origen de ADO NET">
+    design-time-name="Package\Hechos_Ventas\Destino de ADO NET">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
