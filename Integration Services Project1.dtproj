@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-67DFFA9</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAX05O8lCVKEGFf4LdyF8VowAAAAACAAAAAAAQZgAAAAEAACAAAAApLv4NK8bv9DL6EtHeWDJsFTUe63LPULIga3S+S0urMgAAAAAOgAAAAAIAACAAAADlfYIQIvpt2yYgjbncxVZFueYmikknCEMhZuX7Xq0pvZAAAACH2AfTHRO3ur3KRMPPf08KMgdFm3JnOEoT+4wgWQgEVn5aOqLvKIRhb9et+2iQwDWnCbTfMIUn91nKNayM3kKLz7tZJ1pjlHS2KajIWoJis2f6idm7CiaB+I35EU4050N5tQzaAN1sEpF5B8dz+lMI+KQD456JqWoLxPeWTcyDji1KrQiNo/7oDIg5KS2c2y1AAAAACka3oJ5++Lb6s05P98SjSM+xgQnv2UE4EB4ah1Y7QjtT9th4L12kI/rgf1PZhKHcZLHOLa7anr620dG+UmgL/Q==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAX05O8lCVKEGFf4LdyF8VowAAAAACAAAAAAAQZgAAAAEAACAAAAA0QvI5ORr6N6+odlBZEtP9gxu5IhGclFIhvJrDc9pTIAAAAAAOgAAAAAIAACAAAADaTG+eVxXzULd/ztNS92XVsaBIUc/5ptKJF+P/63GWB5AAAABfLKVXVcxImhGgefx091F66CAfHGGCeSyBpRJg0Uc6W1N/FkhFnOCJgnxRA0DK5NjClnSQ0RGQ0v1tAdDSeSDdeoSDN5/FX0zGMMLZz07fUqmTCqWz9h12IMzhuchhLxWYPccLJ5hegTBudWHUsCkr/XTrUbUbwz5i4QjSAlJJHnwMxV+9MPfgHJHItvoyGiFAAAAAavui75SA4iBMA7Sypw3KZAdO/d0hh+e0ZrqVds52ObUTys8K3+FttvZgWzh655FCJS4Qh/1R7O92vKwAn2ehoA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -38,8 +38,8 @@
           <SSIS:Package SSIS:Name="05_Hechos_Planilla.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="06_Hechos_Inventario.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="07_Hechos_Rentabilidad.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="09_Hechos_ClientesRFM.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="MASTER.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="08_Hechos_ClientesRFM.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="Localhost.DbMultidimensionales_Proyecto3_Frijol.conmgr" />
@@ -421,16 +421,16 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="09_Hechos_ClientesRFM.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="MASTER.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{CF244E7A-1AD1-4A63-933B-069C23DFBB7E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{2315B25D-FEA2-43EA-B087-85D0EB7FCBF5}</SSIS:Property>
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">11</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{52CF0226-C7DB-4399-88E5-D39799E4B6DC}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{A1E2F1FC-0C38-490E-8362-F517229F1965}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -438,16 +438,16 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="MASTER.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="08_Hechos_ClientesRFM.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{2315B25D-FEA2-43EA-B087-85D0EB7FCBF5}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{54E5CD43-4980-40B7-9C2D-F9B130F741C7}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">08_Hechos_ClientesRFM</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">10</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{CA77921B-F8B8-4FDC-9B6E-EAB711639596}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{D0D2C379-871E-4C3F-8232-7DBD871E9E19}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

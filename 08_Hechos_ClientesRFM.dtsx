@@ -5,14 +5,14 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-67DFFA9"
   DTS:CreatorName="DESKTOP-67DFFA9\Alejandro"
-  DTS:DTSID="{CF244E7A-1AD1-4A63-933B-069C23DFBB7E}"
+  DTS:DTSID="{54E5CD43-4980-40B7-9C2D-F9B130F741C7}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="17.0.1016.0"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Package1"
+  DTS:ObjectName="08_Hechos_ClientesRFM"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{52CF0226-C7DB-4399-88E5-D39799E4B6DC}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{D0D2C379-871E-4C3F-8232-7DBD871E9E19}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -590,7 +590,7 @@ FROM RFM_Scored;</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Hechos_Clientes\Origen de ADO NET">
+    design-time-name="Package\Hechos_Clientes\Destino de ADO NET">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -598,7 +598,7 @@ FROM RFM_Scored;</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Hechos_Clientes\Destino de ADO NET">
+    design-time-name="Package\Hechos_Clientes\Origen de ADO NET">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{CA77921B-F8B8-4FDC-9B6E-EAB711639596}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{A1E2F1FC-0C38-490E-8362-F517229F1965}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -47,7 +47,7 @@
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>09_Hechos_ClientesRFM.dtsx</PackageName>
+          <PackageName>08_Hechos_ClientesRFM.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
