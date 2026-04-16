@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{25CEBF82-6D30-4418-A7FC-887FC7BF9F31}">
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{C6449CC9-9C78-4B32-A8DC-61A97C1B439C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -178,7 +178,7 @@
     NOMBRE            AS NombreCargo,
     SALARIO_BASE      AS SalarioBaseCargo,
     DESCRIPCION       AS Descripcion
-FROM DbMultidimensionales_Proyecto3_Frijol.dbo.CARGOS_EMPLEADO;</property>
+FROM CARGOS_EMPLEADO;</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -483,7 +483,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.CARGOS_EMPLEADO;</property>
     ID_CATEGORIA AS CodigoCategoria,
     NOMBRE       AS NombreCategoria,
     DESCRIPCION  AS Descripcion
-FROM DbMultidimensionales_Proyecto3_Frijol.dbo.CATEGORIAS_PRODUCTO;</property>
+FROM CATEGORIAS_PRODUCTO;</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -1090,11 +1090,11 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.CICLO_PRODUCTIVO;</property>
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
     c.ID_CLIENTE AS CodigoCliente,
-    LTRIM(RTRIM(c.NOMBRES + ' ' + ISNULL(c.APELLIDOS,''))) AS NombreCliente,
-    (SELECT COUNT(*) FROM DbMultidimensionales_Proyecto3_Frijol.dbo.VENTAS v WHERE v.ID_CLIENTE = c.ID_CLIENTE) AS CantidadVentas,
+    UPPER(LTRIM(RTRIM(c.NOMBRES + ' ' + ISNULL(c.APELLIDOS,'')))) AS NombreCliente,
+    (SELECT COUNT(*) FROM VENTAS v WHERE v.ID_CLIENTE = c.ID_CLIENTE) AS CantidadVentas,
     m.NOMBRE AS Ciudad
-FROM DbMultidimensionales_Proyecto3_Frijol.dbo.CLIENTES c
-INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.MUNICIPIOS m ON c.ID_MUNICIPIO = m.ID_MUNICIPIO;</property>
+FROM CLIENTES c
+INNER JOIN MUNICIPIOS m ON c.ID_MUNICIPIO = m.ID_MUNICIPIO;</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -1410,7 +1410,7 @@ INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.MUNICIPIOS m ON c.ID_MUNICI
         ELSE 'Otro'
     END AS TipoConcepto,
     CASE WHEN OBLIGATORIO = 1 THEN 'Si' ELSE 'No' END AS Obligatorio
-FROM DbMultidimensionales_Proyecto3_Frijol.dbo.CONCEPTOS_PAGO;</property>
+FROM CONCEPTOS_PAGO;</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -1643,13 +1643,6 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.CONCEPTOS_PAGO;</property>
                       externalMetadataColumnId="Package\DW_Empleados\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[NombreCompleto]"
                       lineageId="Package\DW_Empleados\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[NombreCompleto]" />
                     <inputColumn
-                      refId="Package\DW_Empleados\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Cargo]"
-                      cachedDataType="wstr"
-                      cachedLength="80"
-                      cachedName="Cargo"
-                      externalMetadataColumnId="Package\DW_Empleados\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Cargo]"
-                      lineageId="Package\DW_Empleados\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Cargo]" />
-                    <inputColumn
                       refId="Package\DW_Empleados\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[SueldoBasico]"
                       cachedDataType="numeric"
                       cachedName="SueldoBasico"
@@ -1758,14 +1751,13 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.CONCEPTOS_PAGO;</property>
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
     e.ID_EMPLEADO AS CodigoEmpleado,
-    LTRIM(RTRIM(e.NOMBRES + ' ' + e.APELLIDOS)) AS NombreCompleto,
-    ce.NOMBRE         AS Cargo,
+    UPPER(LTRIM(RTRIM(e.NOMBRES + ' ' + e.APELLIDOS))) AS NombreCompleto,
     ce.SALARIO_BASE   AS SueldoBasico,
     e.SEXO            AS Sexo,
     e.FECHA_INGRESO   AS FechaIngreso,
     CASE WHEN e.ACTIVO = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado
-FROM DbMultidimensionales_Proyecto3_Frijol.dbo.EMPLEADOS e
-INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.CARGOS_EMPLEADO ce ON e.ID_CARGO_EMPLEADO = ce.ID_CARGO_EMPLEADO;</property>
+FROM EMPLEADOS e
+INNER JOIN CARGOS_EMPLEADO ce ON e.ID_CARGO_EMPLEADO = ce.ID_CARGO_EMPLEADO;</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -1822,16 +1814,6 @@ INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.CARGOS_EMPLEADO ce ON e.ID_
                       name="NombreCompleto"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DW_Empleados\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Cargo]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DW_Empleados\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Cargo]"
-                      length="80"
-                      lineageId="Package\DW_Empleados\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Cargo]"
-                      name="Cargo"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\DW_Empleados\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[SueldoBasico]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversión"
@@ -1884,11 +1866,6 @@ INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.CARGOS_EMPLEADO ce ON e.ID_
                       length="201"
                       name="NombreCompleto" />
                     <externalMetadataColumn
-                      refId="Package\DW_Empleados\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Cargo]"
-                      dataType="wstr"
-                      length="80"
-                      name="Cargo" />
-                    <externalMetadataColumn
                       refId="Package\DW_Empleados\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[SueldoBasico]"
                       dataType="numeric"
                       name="SueldoBasico"
@@ -1926,12 +1903,6 @@ INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.CARGOS_EMPLEADO ce ON e.ID_
                       length="201"
                       lineageId="Package\DW_Empleados\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[NombreCompleto]"
                       name="NombreCompleto" />
-                    <outputColumn
-                      refId="Package\DW_Empleados\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Cargo]"
-                      dataType="wstr"
-                      length="80"
-                      lineageId="Package\DW_Empleados\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Cargo]"
-                      name="Cargo" />
                     <outputColumn
                       refId="Package\DW_Empleados\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[SueldoBasico]"
                       dataType="numeric"
@@ -2424,7 +2395,7 @@ SELECT 5, 'CHEQUE',         'Pago con cheque';</property>
     NOMBRE         AS NombreInstitucion,
     TIPO           AS TipoInstitucion,
     TELEFONO       AS Telefono
-FROM DbMultidimensionales_Proyecto3_Frijol.dbo.INSTITUCIONES_FINANCIERAS;</property>
+FROM INSTITUCIONES_FINANCIERAS;</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -2750,13 +2721,9 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.INSTITUCIONES_FINANCIERAS;</prope
                   description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
-    p.ID_PRODUCTO   AS CodigoProducto,
-    p.NOMBRE        AS NombreProducto,
-    p.PRECIO_VENTA  AS Precio,
-    p.STOCK_ACTUAL  AS UnidadesEnExistencia,
-    CASE WHEN p.ACTIVO = 1 THEN 'Activo' ELSE 'Inactivo' END AS EstadoProducto
-FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCTOS p;</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        ID_PRODUCTO AS CodigoProducto, NOMBRE AS NombreProducto, ID_CATEGORIA AS CodigoCategoria, PRECIO_VENTA AS Precio, STOCK_ACTUAL AS UnidadesEnExistencia, 
+                         CASE WHEN p.ACTIVO = 1 THEN 'Activo' ELSE 'Inactivo' END AS EstadoProducto
+FROM            PRODUCTOS AS p</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -2813,6 +2780,15 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCTOS p;</property>
                       name="NombreProducto"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
+                      refId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCategoria]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCategoria]"
+                      lineageId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[CodigoCategoria]"
+                      name="CodigoCategoria"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
                       refId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Precio]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversión"
@@ -2857,6 +2833,10 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCTOS p;</property>
                       length="100"
                       name="NombreProducto" />
                     <externalMetadataColumn
+                      refId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoCategoria]"
+                      dataType="i4"
+                      name="CodigoCategoria" />
+                    <externalMetadataColumn
                       refId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Precio]"
                       dataType="numeric"
                       name="Precio"
@@ -2891,6 +2871,11 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCTOS p;</property>
                       length="100"
                       lineageId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[NombreProducto]"
                       name="NombreProducto" />
+                    <outputColumn
+                      refId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCategoria]"
+                      dataType="i4"
+                      lineageId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[CodigoCategoria]"
+                      name="CodigoCategoria" />
                     <outputColumn
                       refId="Package\DW_Productos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Precio]"
                       dataType="numeric"
@@ -3107,13 +3092,13 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCTOS p;</property>
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
     pr.ID_PROVEEDOR AS CodigoProveedor,
-    pr.NOMBRE       AS NombreProveedor,
+    UPPER(pr.NOMBRE)       AS NombreProveedor,
     m.NOMBRE        AS Ciudad,
     d.NOMBRE        AS Departamento,
     pr.TELEFONO     AS Telefono
-FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PROVEEDORES pr
-LEFT JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.MUNICIPIOS m    ON pr.ID_MUNICIPIO   = m.ID_MUNICIPIO
-LEFT JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.DEPARTAMENTOS d ON m.ID_DEPARTAMENTO = d.ID_DEPARTAMENTO;</property>
+FROM PROVEEDORES pr
+LEFT JOIN MUNICIPIOS m    ON pr.ID_MUNICIPIO   = m.ID_MUNICIPIO
+LEFT JOIN DEPARTAMENTOS d ON m.ID_DEPARTAMENTO = d.ID_DEPARTAMENTO;</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -3458,12 +3443,12 @@ LEFT JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.DEPARTAMENTOS d ON m.ID_DEPA
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
     s.ID_SOCIO     AS CodigoSocio,
-    LTRIM(RTRIM(s.NOMBRES + ' ' + s.APELLIDOS)) AS NombreSocio,
+    UPPER(LTRIM(RTRIM(s.NOMBRES + ' ' + s.APELLIDOS))) AS NombreSocio,
     m.NOMBRE       AS Ciudad,
     s.APORTACION   AS Aportacion,
     s.FECHA_INGRESO AS FechaIngreso
-FROM DbMultidimensionales_Proyecto3_Frijol.dbo.SOCIOS s
-INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.MUNICIPIOS m ON s.ID_MUNICIPIO = m.ID_MUNICIPIO;</property>
+FROM SOCIOS s
+INNER JOIN MUNICIPIOS m ON s.ID_MUNICIPIO = m.ID_MUNICIPIO;</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -3812,16 +3797,16 @@ INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.MUNICIPIOS m ON s.ID_MUNICI
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">;WITH Meses AS (
     SELECT DISTINCT YEAR(FECHA_VENTA) AS A, MONTH(FECHA_VENTA) AS M
-    FROM DbMultidimensionales_Proyecto3_Frijol.dbo.VENTAS
+    FROM VENTAS
     UNION
     SELECT DISTINCT YEAR(FECHA_COMPRA), MONTH(FECHA_COMPRA)
-    FROM DbMultidimensionales_Proyecto3_Frijol.dbo.COMPRAS
+    FROM COMPRAS
     UNION
     SELECT DISTINCT YEAR(FECHA_COSECHA), MONTH(FECHA_COSECHA)
-    FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PRODUCCION
+    FROM PRODUCCION
     UNION
     SELECT DISTINCT YEAR(PERIODO_INICIO), MONTH(PERIODO_INICIO)
-    FROM DbMultidimensionales_Proyecto3_Frijol.dbo.PLANILLA
+    FROM PLANILLA
     UNION
     SELECT YEAR(GETDATE()), MONTH(GETDATE())
 )
@@ -4487,7 +4472,7 @@ INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.DEPARTAMENTOS d ON m.ID_DEP
     ID_UNIDAD   AS CodigoUnidad,
     NOMBRE      AS NombreUnidad,
     ABREVIATURA AS Abreviatura
-FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
+FROM UNIDADES_MEDIDA;</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -4623,16 +4608,6 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
-  <DTS:PrecedenceConstraints>
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Restricción]"
-      DTS:CreationName=""
-      DTS:DTSID="{DF38D7BB-58B2-419A-95D5-C73DEEA7CF78}"
-      DTS:From="Package\DW_Categorias"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Restricción"
-      DTS:To="Package\DW_Productos" />
-  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
 <!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
@@ -4644,7 +4619,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
           Size="178,42"
           Id="Package\Dw_CargosEmpleado"
@@ -4701,28 +4676,6 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
           Size="177,42"
           Id="Package\Dw_UnidadesMedida"
           TopLeft="596.5,250.5" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción]"
-          TopLeft="750,48.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="138,0"
-              Start="0,0"
-              End="130.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="130.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -4730,7 +4683,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\Dw_CargosEmpleado">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="176,42"
           Id="Package\Dw_CargosEmpleado\Destino de ADO NET"
@@ -4770,9 +4723,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4798,7 +4749,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Categorias">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="172,42"
           Id="Package\DW_Categorias\Origen de ADO NET"
@@ -4838,9 +4789,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4866,7 +4815,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Ciclos">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="176,42"
           Id="Package\DW_Ciclos\Destino de ADO NET"
@@ -4906,9 +4855,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4934,7 +4881,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Clientes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="176,42"
           Id="Package\DW_Clientes\Destino de ADO NET"
@@ -4974,9 +4921,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5002,7 +4947,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\Dw_ConceptosPago">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="176,42"
           Id="Package\Dw_ConceptosPago\Destino de ADO NET"
@@ -5042,9 +4987,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5070,7 +5013,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Empleados">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="172,42"
           Id="Package\DW_Empleados\Origen de ADO NET"
@@ -5098,9 +5041,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5126,7 +5067,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_FormasPagos">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="172,42"
           Id="Package\DW_FormasPagos\Origen de ADO NET"
@@ -5154,9 +5095,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5182,7 +5121,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\Dw_Instituciones">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="176,42"
           Id="Package\Dw_Instituciones\Destino de ADO NET"
@@ -5210,9 +5149,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5304,7 +5241,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Proveedores">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="172,42"
           Id="Package\DW_Proveedores\Origen de ADO NET"
@@ -5344,9 +5281,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5372,7 +5307,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Socios">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="172,42"
           Id="Package\DW_Socios\Origen de ADO NET"
@@ -5412,9 +5347,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5440,7 +5373,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Tiempo">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="172,42"
           Id="Package\DW_Tiempo\Origen de ADO NET"
@@ -5480,9 +5413,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5508,7 +5439,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\DW_Ubicaciones">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="176,42"
           Id="Package\DW_Ubicaciones\Destino de ADO NET"
@@ -5548,9 +5479,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5576,7 +5505,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
     design-time-name="Package\Dw_UnidadesMedida">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="172,42"
           Id="Package\Dw_UnidadesMedida\Origen de ADO NET"
@@ -5616,9 +5545,7 @@ FROM DbMultidimensionales_Proyecto3_Frijol.dbo.UNIDADES_MEDIDA;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
