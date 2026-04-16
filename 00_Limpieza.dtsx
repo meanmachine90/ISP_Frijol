@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Limpieza"
   DTS:PackageType="5"
-  DTS:VersionBuild="39"
-  DTS:VersionGUID="{D51F09AC-8AE7-4F5F-8ABD-0E6169E63FE3}">
+  DTS:VersionBuild="40"
+  DTS:VersionGUID="{BCF85D87-8D74-476C-AE3C-F0EAE5C4EBF2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -31,7 +31,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{81BD7563-5E5D-4A11-AB81-406B9EF9E203}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE Hechos_Ventas;&#xA;TRUNCATE TABLE Hechos_Compras;&#xA;TRUNCATE TABLE Hechos_Produccion;&#xA;TRUNCATE TABLE Hechos_Planilla;&#xA;TRUNCATE TABLE Hechos_Inventario;&#xA;TRUNCATE TABLE Hechos_Rentabilidad;&#xA;TRUNCATE TABLE Hechos_Socios;&#xA;TRUNCATE TABLE Hechos_ClientesRFM;&#xA;&#xA;DELETE FROM Dw_Productos; &#xA;DELETE FROM Dw_Categorias;&#xA;DELETE FROM Dw_Clientes;&#xA;DELETE FROM Dw_Empleados;&#xA;DELETE FROM Dw_CargosEmpleado;&#xA;DELETE FROM Dw_Proveedores;&#xA;DELETE FROM Dw_Socios;&#xA;DELETE FROM Dw_Ciclos;&#xA;DELETE FROM Dw_Tiempo;&#xA;DELETE FROM Dw_FormaPago;&#xA;DELETE FROM Dw_ConceptosPago;&#xA;DELETE FROM Dw_Instituciones;&#xA;DELETE FROM Dw_UnidadesMedida;&#xA;DELETE FROM Dw_Ubicaciones;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Hechos_Ventas;&#xA;TRUNCATE TABLE Hechos_Compras;&#xA;TRUNCATE TABLE Hechos_Produccion;&#xA;TRUNCATE TABLE Hechos_Planilla;&#xA;TRUNCATE TABLE Hechos_Inventario;&#xA;TRUNCATE TABLE Hechos_Rentabilidad;&#xA;TRUNCATE TABLE Hechos_ClientesRFM;&#xA;&#xA;DELETE FROM Dw_Productos; &#xA;DELETE FROM Dw_Categorias;&#xA;DELETE FROM Dw_Clientes;&#xA;DELETE FROM Dw_Empleados;&#xA;DELETE FROM Dw_CargosEmpleado;&#xA;DELETE FROM Dw_Proveedores;&#xA;DELETE FROM Dw_Socios;&#xA;DELETE FROM Dw_Ciclos;&#xA;DELETE FROM Dw_Tiempo;&#xA;DELETE FROM Dw_FormaPago;&#xA;DELETE FROM Dw_ConceptosPago;&#xA;DELETE FROM Dw_Instituciones;&#xA;DELETE FROM Dw_UnidadesMedida;&#xA;DELETE FROM Dw_Ubicaciones;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
