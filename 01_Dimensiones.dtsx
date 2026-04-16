@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="34"
-  DTS:VersionGUID="{C6449CC9-9C78-4B32-A8DC-61A97C1B439C}">
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{8B39E86F-E5E7-4431-A16E-C70205F95765}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -4169,8 +4169,8 @@ FROM Meses;</property>
         WHEN d.NOMBRE IN ('Olancho','Gracias a Dios')                              THEN 'ORIENTE'
         ELSE 'OTRA'
     END AS Region
-FROM DbMultidimensionales_Proyecto3_Frijol.dbo.MUNICIPIOS m
-INNER JOIN DbMultidimensionales_Proyecto3_Frijol.dbo.DEPARTAMENTOS d ON m.ID_DEPARTAMENTO = d.ID_DEPARTAMENTO;</property>
+FROM MUNICIPIOS m
+INNER JOIN DEPARTAMENTOS d ON m.ID_DEPARTAMENTO = d.ID_DEPARTAMENTO;</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
